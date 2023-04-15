@@ -20,6 +20,7 @@ class LoginFirstScreenViewController: UIViewController {
         
     }
     @IBAction func setUsername(_ sender: UITextField) {
+       print(sender.text)
         VM.setUsername(username: sender.text ?? "")
     };
     @IBOutlet weak var txtPassword: UITextField!
@@ -161,6 +162,11 @@ extension LoginFirstScreenViewController {
                 
             case .invalid:
                 self?.showToast(message: "Tên đăng nhập hoặc mật khẩu không đúng", font: .systemFont(ofSize: 11.0))
+
+            case .permission:
+                DispatchQueue.main.async {
+                    self?.showToast(message: "Tài khoản chưa được cấp quyền", font: .systemFont(ofSize: 11.0))
+                }
 
             }
         }

@@ -18,6 +18,10 @@
 		A45EBB8A29D3E54D00120D06 /* admin_mobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB8929D3E54D00120D06 /* admin_mobileTests.swift */; };
 		A45EBB9429D3E54D00120D06 /* admin_mobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB9329D3E54D00120D06 /* admin_mobileUITests.swift */; };
 		A45EBB9629D3E54D00120D06 /* admin_mobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB9529D3E54D00120D06 /* admin_mobileUITestsLaunchTests.swift */; };
+		A46147CA29EA80D600A90A0E /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147C729EA80D600A90A0E /* Events.swift */; };
+		A46147CB29EA80D600A90A0E /* ReponsePermissionEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147C829EA80D600A90A0E /* ReponsePermissionEvents.swift */; };
+		A46147CC29EA80D600A90A0E /* DataReponsePermissionEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147C929EA80D600A90A0E /* DataReponsePermissionEvents.swift */; };
+		A46147CE29EA835000A90A0E /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147CD29EA835000A90A0E /* Roles.swift */; };
 		A4E156B629E7DDDC00853BD2 /* LoginFirstScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E156B529E7DDDC00853BD2 /* LoginFirstScreenViewModel.swift */; };
 		A4E156BB29E7DE9300853BD2 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E156B829E7DE9300853BD2 /* RealmHelper.swift */; };
 		A4E156BC29E7DE9300853BD2 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E156B929E7DE9300853BD2 /* APIManager.swift */; };
@@ -103,6 +107,10 @@
 		A45EBB8F29D3E54D00120D06 /* admin-mobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "admin-mobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45EBB9329D3E54D00120D06 /* admin_mobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = admin_mobileUITests.swift; sourceTree = "<group>"; };
 		A45EBB9529D3E54D00120D06 /* admin_mobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = admin_mobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A46147C729EA80D600A90A0E /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		A46147C829EA80D600A90A0E /* ReponsePermissionEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponsePermissionEvents.swift; sourceTree = "<group>"; };
+		A46147C929EA80D600A90A0E /* DataReponsePermissionEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataReponsePermissionEvents.swift; sourceTree = "<group>"; };
+		A46147CD29EA835000A90A0E /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
 		A4E156B529E7DDDC00853BD2 /* LoginFirstScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFirstScreenViewModel.swift; sourceTree = "<group>"; };
 		A4E156B829E7DE9300853BD2 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		A4E156B929E7DE9300853BD2 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -293,6 +301,26 @@
 		A45EBBA929D40BB900120D06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A46147C629EA809A00A90A0E /* ModelLogin */,
+				A46147C529EA808C00A90A0E /* ModelPermission */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A46147C529EA808C00A90A0E /* ModelPermission */ = {
+			isa = PBXGroup;
+			children = (
+				A46147CD29EA835000A90A0E /* Roles.swift */,
+				A46147C929EA80D600A90A0E /* DataReponsePermissionEvents.swift */,
+				A46147C729EA80D600A90A0E /* Events.swift */,
+				A46147C829EA80D600A90A0E /* ReponsePermissionEvents.swift */,
+			);
+			path = ModelPermission;
+			sourceTree = "<group>";
+		};
+		A46147C629EA809A00A90A0E /* ModelLogin */ = {
+			isa = PBXGroup;
+			children = (
 				A4E156CE29E7E09F00853BD2 /* DataReponseLogin.swift */,
 				A4E156CD29E7E09F00853BD2 /* FeatureCodeDtos.swift */,
 				A4E156CC29E7E09F00853BD2 /* GetUserInfor.swift */,
@@ -300,7 +328,7 @@
 				A4E156D029E7E0A000853BD2 /* ReponseLogin.swift */,
 				A4E156D129E7E0A000853BD2 /* Role.swift */,
 			);
-			path = Model;
+			path = ModelLogin;
 			sourceTree = "<group>";
 		};
 		A4E156B729E7DE9300853BD2 /* Helper */ = {
@@ -771,17 +799,20 @@
 				A4E156D529E7E0A000853BD2 /* InfoLogin.swift in Sources */,
 				A4E156C429E7DF0E00853BD2 /* UserEndPoint.swift in Sources */,
 				A4E156D629E7E0A000853BD2 /* ReponseLogin.swift in Sources */,
+				A46147CA29EA80D600A90A0E /* Events.swift in Sources */,
 				A45EBB7429D3E54B00120D06 /* ViewController.swift in Sources */,
 				A4E1573E29E7E1C200853BD2 /* PaymentMethodViewController.swift in Sources */,
 				A4E156B629E7DDDC00853BD2 /* LoginFirstScreenViewModel.swift in Sources */,
 				A4E1572B29E7E1C200853BD2 /* HomeViewController.swift in Sources */,
 				A4E1573329E7E1C200853BD2 /* ResponseMyProfile.swift in Sources */,
 				A4E156C229E7DF0E00853BD2 /* EntityEndPoint.swift in Sources */,
+				A46147CE29EA835000A90A0E /* Roles.swift in Sources */,
 				A4E1573129E7E1C200853BD2 /* UserProfile.swift in Sources */,
 				A4E156BC29E7DE9300853BD2 /* APIManager.swift in Sources */,
 				A4E1574329E7E1C200853BD2 /* FavoriteEventsViewController.swift in Sources */,
 				A4E1573829E7E1C200853BD2 /* InfoTableViewCell.swift in Sources */,
 				A4E1573529E7E1C200853BD2 /* EditProfileViewController.swift in Sources */,
+				A46147CC29EA80D600A90A0E /* DataReponsePermissionEvents.swift in Sources */,
 				A4E156D729E7E0A000853BD2 /* Role.swift in Sources */,
 				A4E156D329E7E0A000853BD2 /* FeatureCodeDtos.swift in Sources */,
 				A45EBB7A29D3E54B00120D06 /* admin_mobile.xcdatamodeld in Sources */,
@@ -803,6 +834,7 @@
 				A4E1573B29E7E1C200853BD2 /* EditProfileButtonTableViewCell.swift in Sources */,
 				A4E1573029E7E1C200853BD2 /* ReponseError.swift in Sources */,
 				A4E1573229E7E1C200853BD2 /* ReponseCommon.swift in Sources */,
+				A46147CB29EA80D600A90A0E /* ReponsePermissionEvents.swift in Sources */,
 				A4E1572E29E7E1C200853BD2 /* UpdateProfile.swift in Sources */,
 				A4E1574229E7E1C200853BD2 /* EventCollectionViewCell.swift in Sources */,
 				A4E1576B29E7FF0200853BD2 /* LoginFirstScreenViewController.swift in Sources */,

@@ -69,7 +69,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="setUsername:" destination="0LR-m1-YNg" eventType="editingDidEnd" id="4wR-dt-Q1v"/>
+                                            <action selector="setUsername:" destination="0LR-m1-YNg" eventType="editingChanged" id="N16-54-aXr"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEh-w9-geB">
@@ -78,7 +78,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="setPassword:" destination="0LR-m1-YNg" eventType="editingDidEnd" id="TQ6-Xq-D5L"/>
+                                            <action selector="setPassword:" destination="0LR-m1-YNg" eventType="editingChanged" id="Rsf-8S-Nwe"/>
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZlC-SI-Nba">

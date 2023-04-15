@@ -61,6 +61,8 @@ extension MenuViewController {
                     }
                 }
             case .invalid: break
+            case .permission:
+                break
             }
         }
     }
