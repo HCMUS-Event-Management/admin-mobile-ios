@@ -1,0 +1,44 @@
+PODS:
+  - DropDown (2.3.13)
+  - IQKeyboardManagerSwift (6.5.11)
+  - LZViewPager (1.2.5):
+    - SnapKit (~> 5.0.0)
+  - Realm (10.38.0):
+    - Realm/Headers (= 10.38.0)
+  - Realm/Headers (10.38.0)
+  - RealmSwift (10.38.0):
+    - Realm (= 10.38.0)
+  - SnapKit (5.0.1)
+  - SwiftyRSA (1.7.0):
+    - SwiftyRSA/ObjC (= 1.7.0)
+  - SwiftyRSA/ObjC (1.7.0)
+
+DEPENDENCIES:
+  - DropDown
+  - IQKeyboardManagerSwift
+  - LZViewPager (~> 1.2.5)
+  - RealmSwift
+  - SwiftyRSA
+
+SPEC REPOS:
+  trunk:
+    - DropDown
+    - IQKeyboardManagerSwift
+    - LZViewPager
+    - Realm
+    - RealmSwift
+    - SnapKit
+    - SwiftyRSA
+
+SPEC CHECKSUMS:
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
+  LZViewPager: 89ddd98246d54b52bde14c8d91702f946d6f8893
+  Realm: 5902885dd1d5e71b0b020830caab937ecdf5bf07
+  RealmSwift: 0fc037d6c32c7c4fc9362892380f380114ecdcf0
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
+
+PODFILE CHECKSUM: 4527b486aa138b69e11bd1da5512b9de63460aef
+
+COCOAPODS: 1.11.3

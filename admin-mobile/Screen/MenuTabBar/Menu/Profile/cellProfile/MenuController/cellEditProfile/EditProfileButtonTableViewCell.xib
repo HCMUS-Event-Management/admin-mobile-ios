@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="KGk-i7-Jjw" customClass="EditProfileButtonTableViewCell" customModule="mobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="354" height="105"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="354" height="105"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyN-Mu-mzB">
+                        <rect key="frame" x="20" y="0.0" width="314" height="105"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbY-if-fMx">
+                                <rect key="frame" x="178.5" y="26.5" width="125.5" height="52.5"/>
+                                <color key="backgroundColor" red="0.36862745099999999" green="0.52941176469999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapSecondButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rB9-7N-aPH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PKp-BB-8dN">
+                                <rect key="frame" x="10" y="26.5" width="125.5" height="52.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapCancel:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lO7-99-iSk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PKp-BB-8dN" firstAttribute="width" secondItem="EyN-Mu-mzB" secondAttribute="width" multiplier="0.4" id="DEG-u4-T8o"/>
+                            <constraint firstItem="PKp-BB-8dN" firstAttribute="centerY" secondItem="EyN-Mu-mzB" secondAttribute="centerY" id="Dxa-Hx-7Pb"/>
+                            <constraint firstItem="qbY-if-fMx" firstAttribute="width" secondItem="PKp-BB-8dN" secondAttribute="width" id="G2R-Sh-kpi"/>
+                            <constraint firstItem="PKp-BB-8dN" firstAttribute="height" secondItem="EyN-Mu-mzB" secondAttribute="height" multiplier="0.5" id="Jrm-uf-mEH"/>
+                            <constraint firstItem="PKp-BB-8dN" firstAttribute="leading" secondItem="EyN-Mu-mzB" secondAttribute="leading" constant="10" id="SvX-L5-VN2"/>
+                            <constraint firstAttribute="trailing" secondItem="qbY-if-fMx" secondAttribute="trailing" constant="10" id="aQC-pZ-wfp"/>
+                            <constraint firstItem="qbY-if-fMx" firstAttribute="height" secondItem="PKp-BB-8dN" secondAttribute="height" id="tHP-qL-sYE"/>
+                            <constraint firstItem="qbY-if-fMx" firstAttribute="centerY" secondItem="PKp-BB-8dN" secondAttribute="centerY" id="uJ2-Xk-CtN"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="EyN-Mu-mzB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="GMz-kI-wof"/>
+                    <constraint firstAttribute="bottom" secondItem="EyN-Mu-mzB" secondAttribute="bottom" id="bZI-3s-KRV"/>
+                    <constraint firstAttribute="trailing" secondItem="EyN-Mu-mzB" secondAttribute="trailing" constant="20" id="pVb-mW-J3Q"/>
+                    <constraint firstItem="EyN-Mu-mzB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qLg-L5-RJW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="btnCancel" destination="PKp-BB-8dN" id="0dL-TZ-kVu"/>
+                <outlet property="btnSelect" destination="qbY-if-fMx" id="sqz-zZ-ms2"/>
+            </connections>
+            <point key="canvasLocation" x="156.52173913043478" y="104.79910714285714"/>
+        </tableViewCell>
+    </objects>
+</document>
