@@ -1,14 +1,16 @@
 PODS:
   - DropDown (2.3.13)
   - IQKeyboardManagerSwift (6.5.11)
-  - LZViewPager (1.2.5):
-    - SnapKit (~> 5.0.0)
-  - Realm (10.38.0):
-    - Realm/Headers (= 10.38.0)
-  - Realm/Headers (10.38.0)
-  - RealmSwift (10.38.0):
-    - Realm (= 10.38.0)
-  - SnapKit (5.0.1)
+  - Kingfisher (7.7.0)
+  - LZViewPager (1.2.8):
+    - SnapKit (~> 5.6.0)
+  - ReachabilitySwift (5.0.0)
+  - Realm (10.38.3):
+    - Realm/Headers (= 10.38.3)
+  - Realm/Headers (10.38.3)
+  - RealmSwift (10.38.3):
+    - Realm (= 10.38.3)
+  - SnapKit (5.6.0)
   - SwiftyRSA (1.7.0):
     - SwiftyRSA/ObjC (= 1.7.0)
   - SwiftyRSA/ObjC (1.7.0)
@@ -16,15 +18,19 @@ PODS:
 DEPENDENCIES:
   - DropDown
   - IQKeyboardManagerSwift
+  - Kingfisher
   - LZViewPager (~> 1.2.5)
-  - RealmSwift
+  - ReachabilitySwift
+  - RealmSwift (~> 10.38.0)
   - SwiftyRSA
 
 SPEC REPOS:
   trunk:
     - DropDown
     - IQKeyboardManagerSwift
+    - Kingfisher
     - LZViewPager
+    - ReachabilitySwift
     - Realm
     - RealmSwift
     - SnapKit
@@ -33,12 +39,14 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
-  LZViewPager: 89ddd98246d54b52bde14c8d91702f946d6f8893
-  Realm: 5902885dd1d5e71b0b020830caab937ecdf5bf07
-  RealmSwift: 0fc037d6c32c7c4fc9362892380f380114ecdcf0
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
+  LZViewPager: 832bd177210060e1282b67aa1e9cd201ded67a5b
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  Realm: 0bdb75abc37a5b80e814bf28268ecdd7c6a92d41
+  RealmSwift: 9340d46aa1e711bce2cf70bd370ac3c48a9c6795
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
 
-PODFILE CHECKSUM: 4527b486aa138b69e11bd1da5512b9de63460aef
+PODFILE CHECKSUM: 47b978afc63722d4c8ea6cbe178bf559d57d23cc
 
 COCOAPODS: 1.11.3

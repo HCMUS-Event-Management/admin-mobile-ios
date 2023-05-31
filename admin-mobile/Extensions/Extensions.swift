@@ -115,17 +115,19 @@ extension UIViewController {
         return UIImage(systemName: "xmark") ?? UIImage()
     }
     
-    func hashRSA(from string: String) -> String? {
+    func decodeRSA(from string: String) -> String? {
         do {
 
-            let publicKey = try PublicKey(pemEncoded: ProcessInfo.processInfo.environment["RSA_PUBLIC_KEY"]!)
+            let privateKey = try PrivateKey(pemEncoded: ProcessInfo.processInfo.environment["RSA_PRIVATE_KEY"]!)
+            
+            let encrypted = try EncryptedMessage(base64Encoded: string)
+            let clear = try encrypted.decrypted(with: privateKey, padding: .PKCS1)
 
-            print(string)
-            let clear = try ClearMessage(string: string, using: .utf8)
-            let encrypted = try clear.encrypted(with: publicKey, padding: .PKCS1)
-
-            let base64String = encrypted.base64String
-            return base64String
+            // Then you can use:
+            let data = clear.data
+            let base64String = clear.base64String
+            let result = try clear.string(encoding: .utf8)
+            return result
         } catch {
             print(error)
         }
@@ -145,3 +147,9 @@ extension Realm {
 }
 
 
+extension DateFormatter {
+    func iso8601String(from date: Date) -> String {
+        dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return string(from: date)
+    }
+}

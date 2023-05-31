@@ -7,15 +7,11 @@
 
 import Foundation
 import UIKit
+// Singleton Design Pattern
 
-enum DataError: Error, Equatable {
+enum DataError: Error {
     
-    static func == (lhs: DataError, rhs: DataError) -> Bool {
-        return lhs.localizedDescription == rhs.localizedDescription
-    }
-    
-    case invalidResponse
-    case invalidResponse400(String?)
+    case invalidResponse(String?)
     case invalidResponse401
     case invalidResponse500
     case invalidURL
@@ -45,7 +41,7 @@ final class APIManager {
                 if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
                     Contanst.userdefault.set(encodedUser, forKey: "userInfo")
                 }
-                
+                print(info)
                 completion(.success(info))
             case .failure(let error):
                 completion(.failure(error))
@@ -70,7 +66,19 @@ final class APIManager {
 //
                 do {
                     let dataType = try JSONDecoder().decode(ReponseError.self, from: data)
-                    completion(.failure(.invalidResponse400(String((dataType.message?.split(separator: ";")[0])!) as String)))
+                    completion(.failure(.invalidResponse(String((dataType.message?.split(separator: ";")[0])!) as String)))
+                    return
+                }catch {
+                    completion(.failure(.network(error)))
+                }
+                
+            }
+            if let response = response as? HTTPURLResponse,
+               402 ... 410 ~= response.statusCode {
+//
+                do {
+                    let dataType = try JSONDecoder().decode(ReponseError.self, from: data)
+                    completion(.failure(.invalidResponse(String((dataType.message?.split(separator: ";")[0])!) as String)))
                     return
                 }catch {
                     completion(.failure(.network(error)))
@@ -93,25 +101,7 @@ final class APIManager {
                 if (tokenInstance.getToken(key: "refreshToken") == "") {
                     return
                 }
-                
-                
-//                test
-//                if (tokenInstance.getToken(key: "refreshToken") != "") {
-//                    if let refreshToken = try? tokenInstance.decode(jwtToken: tokenInstance.getToken(key: "refreshToken")) {
-//                        if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(refreshToken["exp"]! as! Double) {
-//                            print("còn hạn")
-//                        } else {
-//                            completion(.failure(.invalidResponse401))
-//                            return
-//                            print("hết hạn")
-//                        }
-//                    } else {
-//                        print("hết hạn")
-//                    }
-//                } else {
-//                    print("hết hạn")
-//                }
-                
+      
                 self.checkRefreshToken+=1
                 self.loginByRefresh(completion: {
                     result in
@@ -134,7 +124,7 @@ final class APIManager {
 
                         rq.allHTTPHeaderFields = type.headers
 
-                        
+                        print(Contanst.userdefault.string(forKey: "userToken"))
                         self.handleTaskSession(modelType: modelType, type: type, params: params, request: rq, completion:  {
                             result in
                             switch result {
@@ -167,6 +157,18 @@ final class APIManager {
                     completion(.failure(.network(error)))
                 }
                 completion(.failure(.invalidResponse500))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                  502 ~= response.statusCode {
+                do {
+                    let dataType = try JSONDecoder().decode(ReponseError.self, from: data)
+                    print(dataType)
+                }catch {
+//                    completion(.failure(.network(error)))
+                }
+//                completion(.failure(.invalidResponse500))
                 return
             }
             

@@ -41,8 +41,7 @@ class LoginFirstScreenViewModel {
                 }
                 self.eventHandler?(.dataLoaded)
             case .failure(let error):
-
-                if case DataError.invalidResponse400(let reason) = error {
+                if case DataError.invalidResponse(let reason) = error {
                     self.eventHandler?(.error(reason))
                 }
                 else {
@@ -108,7 +107,7 @@ class LoginFirstScreenViewModel {
                             })
 
                         case .failure(let error):
-                            if case DataError.invalidResponse400(let reason) = error {
+                            if case DataError.invalidResponse(let reason) = error {
                                 self.eventHandler?(.error(reason))
                             }
                             else {
@@ -125,7 +124,7 @@ class LoginFirstScreenViewModel {
 //
 //                    
                     case .failure(let error):
-                        if case DataError.invalidResponse400(let reason) = error {
+                        if case DataError.invalidResponse(let reason) = error {
                             self.eventHandler?(.error(reason))
                         }
                         else {

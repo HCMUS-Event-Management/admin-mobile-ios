@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="238" id="KGk-i7-Jjw" customClass="ImageQRCodeTableViewCell" customModule="mobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="225" height="238"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="225" height="238"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3B-hN-8ep">
+                        <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Td1-57-8jg">
+                                <rect key="frame" x="5" y="6" width="215" height="212.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Td1-57-8jg" secondAttribute="height" multiplier="1:1" id="Y3S-aV-eM6"/>
+                                </constraints>
+                                <imageReference key="image" image="qrcode" catalog="system" renderingMode="original"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Td1-57-8jg" firstAttribute="top" secondItem="h3B-hN-8ep" secondAttribute="top" constant="5" id="T8A-kq-cCb"/>
+                            <constraint firstItem="Td1-57-8jg" firstAttribute="leading" secondItem="h3B-hN-8ep" secondAttribute="leading" constant="5" id="dxI-fJ-RhC"/>
+                            <constraint firstAttribute="bottom" secondItem="Td1-57-8jg" secondAttribute="bottom" constant="5" id="hae-zm-bzC"/>
+                            <constraint firstItem="Td1-57-8jg" firstAttribute="centerY" secondItem="h3B-hN-8ep" secondAttribute="centerY" id="iE5-2t-XhK"/>
+                            <constraint firstAttribute="trailing" secondItem="Td1-57-8jg" secondAttribute="trailing" constant="5" id="wgz-k6-gW9"/>
+                            <constraint firstItem="Td1-57-8jg" firstAttribute="centerX" secondItem="h3B-hN-8ep" secondAttribute="centerX" id="yUc-r4-3Nd"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="h3B-hN-8ep" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SfN-V4-b9F"/>
+                    <constraint firstAttribute="bottom" secondItem="h3B-hN-8ep" secondAttribute="bottom" id="ekr-th-8Nb"/>
+                    <constraint firstItem="h3B-hN-8ep" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="foh-d0-WWT"/>
+                    <constraint firstAttribute="trailing" secondItem="h3B-hN-8ep" secondAttribute="trailing" id="vT2-RC-gf1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgQR" destination="Td1-57-8jg" id="7OO-VQ-3It"/>
+                <outlet property="mainView" destination="h3B-hN-8ep" id="5rS-5K-atv"/>
+            </connections>
+            <point key="canvasLocation" x="63.04347826086957" y="146.65178571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="qrcode" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -122,18 +122,18 @@ extension ProfileDetailViewController: UITableViewDataSource {
         } else if (indexPath.row == 4) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
-                
-                print(Date().formatted(date: .numeric, time: .omitted))
-                
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                
-                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
-                
-                
-                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+//
+//                print(Date().formatted(date: .numeric, time: .omitted))
+//
+//
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+//                
+//
+//                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
                 
                 cell.tf.isEnabled = false // hợp lí
                 return cell

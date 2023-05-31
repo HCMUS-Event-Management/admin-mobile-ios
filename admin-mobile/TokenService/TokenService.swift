@@ -31,7 +31,14 @@ class TokenService {
     
     
     func checkForLogin(completionHandler: @escaping CompletionHandler) {
-        let now = Date.now.timeIntervalSince1970
+        let now = NSDate.now.timeIntervalSince1970
+//        if #available(iOS 15, *) {
+//            let now = Date.now.timeIntervalSince1970
+//        } else {
+//            let now = NSDate.now.timeIntervalSince1970
+//            // Fallback on earlier versions
+//        }
+        
     
         if (getToken(key: "userToken") != "" && getToken(key: "refreshToken") != "") {
             if let infoToken = try? decode(jwtToken: getToken(key: "userToken")) {

@@ -9,6 +9,8 @@ import UIKit
 
 class LoginFirstScreenViewController: UIViewController {
 
+    @IBOutlet weak var btnLoginGGR: UIButton!
+    @IBOutlet weak var btnLoginGG: UIButton!
     var VM = LoginFirstScreenViewModel()
     @IBOutlet weak var btnCheckBoxRemember: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
@@ -103,6 +105,7 @@ class LoginFirstScreenViewController: UIViewController {
         btnLogin.addTarget(self, action: #selector(Login), for: .touchUpInside)
         btnLogin.layer.cornerRadius = 15
         btnLogin.layer.masksToBounds = true
+
     }
     
     @objc func Login() {
@@ -138,27 +141,17 @@ extension LoginFirstScreenViewController {
                     self?.changeScreen(modelType: UIViewController.self,id: "MenuTabBar")
                 }
             case .error(let error):
-                print(error)
-//                let err = error as! DataError
-                DispatchQueue.main.async {
-                    self?.showToast(message: error!, font: .systemFont(ofSize: 11.0))
-                    self?.stoppedLoader(loader: loader ?? UIAlertController())
-                }
-
-                
-                
-//                if (err == DataError.invalidResponse400) {
-//                    DispatchQueue.main.async {
-//                        self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
-//                        self?.stoppedLoader(loader: loader ?? UIAlertController())
-//                    }
-//                }
-                
-                
-//                if let err = error as? DataError.invalidResponse400 ,  let msg = err.localizedDescription {
-//                    print(msg)
-//
-//                }
+                if (error == DataError.invalidResponse500.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối Mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } 
                 
             case .invalid:
                 self?.showToast(message: "Tên đăng nhập hoặc mật khẩu không đúng", font: .systemFont(ofSize: 11.0))

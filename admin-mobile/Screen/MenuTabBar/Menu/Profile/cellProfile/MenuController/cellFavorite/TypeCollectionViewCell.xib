@@ -17,16 +17,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5i-Go-p4a">
-                        <rect key="frame" x="10" y="10" width="243" height="119"/>
+                        <rect key="frame" x="0.0" y="10" width="263" height="119"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTe-Q8-1Lv">
-                                <rect key="frame" x="106.5" y="52.5" width="30" height="14.5"/>
+                                <rect key="frame" x="116.5" y="52.5" width="30" height="14.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pTe-Q8-1Lv" firstAttribute="centerY" secondItem="U5i-Go-p4a" secondAttribute="centerY" id="AQ7-q4-WZy"/>
                             <constraint firstItem="pTe-Q8-1Lv" firstAttribute="centerX" secondItem="U5i-Go-p4a" secondAttribute="centerX" id="BSP-dJ-pG1"/>
@@ -37,12 +37,13 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="U5i-Go-p4a" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="LTm-vJ-4AW"/>
-                <constraint firstItem="U5i-Go-p4a" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="aCp-nt-sky"/>
-                <constraint firstAttribute="trailing" secondItem="U5i-Go-p4a" secondAttribute="trailing" constant="10" id="cPj-iD-b9x"/>
+                <constraint firstItem="U5i-Go-p4a" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aCp-nt-sky"/>
+                <constraint firstAttribute="trailing" secondItem="U5i-Go-p4a" secondAttribute="trailing" id="cPj-iD-b9x"/>
                 <constraint firstAttribute="bottom" secondItem="U5i-Go-p4a" secondAttribute="bottom" constant="10" id="sUK-k1-Qvt"/>
             </constraints>
             <size key="customSize" width="263" height="139"/>
             <connections>
+                <outlet property="category" destination="pTe-Q8-1Lv" id="hL3-LC-ZYb"/>
                 <outlet property="viewLbl" destination="U5i-Go-p4a" id="mV1-uT-sdL"/>
             </connections>
             <point key="canvasLocation" x="286.23188405797106" y="114.17410714285714"/>

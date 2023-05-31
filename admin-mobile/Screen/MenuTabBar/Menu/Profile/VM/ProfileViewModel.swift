@@ -41,7 +41,7 @@ final class ProfileViewModel {
                     }
                     self.eventHandler?(.dataLoaded)
                 case .failure(let error):
-                    if case DataError.invalidResponse400(let reason) = error {
+                    if case DataError.invalidResponse(let reason) = error {
                         self.eventHandler?(.error(reason))
                     }
                     else {
@@ -76,7 +76,7 @@ final class ProfileViewModel {
                 Contanst.userdefault.removeObject(forKey: "userInfoDetail")
                 self.eventHandler?(.updateProfile)
             case .failure(let error):
-                if case DataError.invalidResponse400(let reason) = error {
+                if case DataError.invalidResponse(let reason) = error {
                     self.eventHandler?(.error(reason))
                 }
                 else {
@@ -100,7 +100,7 @@ final class ProfileViewModel {
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self.eventHandler?(.logout)
                     case .failure(let error):
-                        if case DataError.invalidResponse400(let reason) = error {
+                        if case DataError.invalidResponse(let reason) = error {
                             self.eventHandler?(.error(reason))
                         }
                         else {

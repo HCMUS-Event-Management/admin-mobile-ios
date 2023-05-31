@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DropDown
+//import DropDown
 class EditProfileViewController: UIViewController, EditProfileButtonTableViewCellDelegate {
     func backScreen() {
         self.navigationController?.popViewController(animated: true)
@@ -128,7 +128,11 @@ extension EditProfileViewController: UITableViewDataSource {
                 let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
 
                 
-                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+                if #available(iOS 15.0, *) {
+                    cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+                } else {
+                    // Fallback on earlier versions
+                }
                 
                 // date Picker
                 let datePicker = UIDatePicker()
@@ -154,24 +158,24 @@ extension EditProfileViewController: UITableViewDataSource {
                 // dropDown
                 let countryValuesArray = ["MALE", "FEMALE"]
 
-                let myDropDown = DropDown()
-                myDropDown.anchorView = cell.mainView
-                myDropDown.dataSource = countryValuesArray
-                myDropDown.bottomOffset = CGPoint(x: 0, y: (myDropDown.anchorView?.plainView.bounds.height)!)
-                myDropDown.topOffset = CGPoint(x: 0, y: -(myDropDown.anchorView?.plainView.bounds.height)!)
-                myDropDown.direction = .bottom
-                
-                myDropDown.selectionAction = { (index: Int, item: String) in
-                    self.VM.userInfoDetail?.gender = countryValuesArray[index]
-//                    self.tb.reloadData()
-                    self.tb.reloadRows(at: [indexPath], with: .none)
-
-                }
-                
-                cell.callback = {
-                    cell.tf.endEditing(true)
-                    myDropDown.show()
-                }
+//                let myDropDown = DropDown()
+//                myDropDown.anchorView = cell.mainView
+//                myDropDown.dataSource = countryValuesArray
+//                myDropDown.bottomOffset = CGPoint(x: 0, y: (myDropDown.anchorView?.plainView.bounds.height)!)
+//                myDropDown.topOffset = CGPoint(x: 0, y: -(myDropDown.anchorView?.plainView.bounds.height)!)
+//                myDropDown.direction = .bottom
+//                
+//                myDropDown.selectionAction = { (index: Int, item: String) in
+//                    self.VM.userInfoDetail?.gender = countryValuesArray[index]
+////                    self.tb.reloadData()
+//                    self.tb.reloadRows(at: [indexPath], with: .none)
+//
+//                }
+//                
+//                cell.callback = {
+//                    cell.tf.endEditing(true)
+//                    myDropDown.show()
+//                }
                 
                 //default
                 cell.tf.text = VM.userInfoDetail?.gender

@@ -14,9 +14,12 @@ enum UserEndPoint {
     case updateProfile // PUT
     case changePassword // PUT
     case forgetPassword // POST
+    case sendOTP // POST
     case verifyToken(token: String) // GET
     case refreshToken(token: String) // POST
+    case uploadAvatar // PUT
     case me  // GET
+
 }
 
 // https://fakestoreapi.com/products
@@ -41,6 +44,10 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/verify/\(query)"
         case .refreshToken(let query):
             return "api/v1/user-auth/user/refresh-token?refreshToken=Bearer%20\(query)"
+        case .sendOTP:
+            return "api/v1/user-auth/user/send-otp"
+        case .uploadAvatar:
+            return "api/v1/user-auth/user/upload-avatar"
         case .me:
             return "api/v1/user-auth/user/me"
         }
@@ -49,7 +56,8 @@ extension UserEndPoint: EndPointType {
     }
 
     var baseURL: String {
-        return ProcessInfo.processInfo.environment["BASE_URL"]!
+//        return ProcessInfo.processInfo.environment["BASE_URL"]!
+        return "https://api.hcmus.online/"
     }
 
     var url: URL? {
@@ -74,6 +82,10 @@ extension UserEndPoint: EndPointType {
             return .get
         case .refreshToken:
             return .post
+        case .sendOTP:
+            return .post
+        case .uploadAvatar:
+            return .put
         case .me:
             return .get
         }
@@ -96,6 +108,10 @@ extension UserEndPoint: EndPointType {
         case .verifyToken:
             return nil
         case .refreshToken:
+            return nil
+        case .sendOTP:
+            return nil
+        case .uploadAvatar:
             return nil
         case .me:
             return nil
@@ -121,6 +137,10 @@ extension UserEndPoint: EndPointType {
             return APIManager.commonHeaders
         case .refreshToken:
             return APIManager.commonHeaders
+        case .sendOTP:
+            return APIManager.commonHeaders
+        case .uploadAvatar:
+            return APIManager.bearTokenHeaders
         case .me:
             return APIManager.bearTokenHeaders
         }

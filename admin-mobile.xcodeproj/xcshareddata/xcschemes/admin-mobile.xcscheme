@@ -73,7 +73,22 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BASE_URL"
-            value = "http://local.kube/"
+            value = "https://api.hcmus.online/"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BASE_URL1"
+            value = "https://api.hcmus.online/"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "RSA_PRIVATE_KEY"
+            value = "-----BEGIN RSA PRIVATE KEY-----&#10;MIICWgIBAAKBgEaUb1IpGaT6Rsmwz04QdIMQ4Qzzokfjk6kzhkGBINXiVrsuYNfe&#10;wIU2UpiSq88w1yum23cBiW1QaN/RvaWqz8bajLMh88w/JA0s20FWkUgQqnFs6+yx&#10;6VfSRMr55fVs1bvfwofvaAA9OnwJxbCF54qxU56KyzHFjZ3c5JJ2gUuZAgMBAAEC&#10;gYAvl+6NR7vMPRy46uqP6Ja4vwwTMMMQmQy8f0scJtgegncb18VkLAhEjAIccmM6&#10;3uNpwyWg1T93oE5oB0ZMTae36eSwgJxJaEj3/t3kbmJPndhRf0hsjzwGXnSmaREk&#10;f1NOHRoubB4sjmM3GHmCB5dHC4YR0/STebMIzKIKcj6C5QJBAIbSoBGT88hBJyjb&#10;FnKZDr5cxWr65QxNRTgBeejAaA2sUjKmE3aKPhzIp4h+cLNG1KKetKEZiCgMoPYz&#10;dcSfcFMCQQCGBCZwZYix0d81x1JDK2culeZmqq10lnwk5T4pN98a46jToCaOv3VM&#10;u1H48p0tszE1B/CCvJjJIFOpUvqkrkbjAkBRBMuKJKXPxk9Y/udrcEzq2mcMVb9E&#10;+D5LXJ+83brp1I8EvsZdas/OjkoW/RyOr1biborPcL9gic5EhUIVKVbfAkAV4NmR&#10;odHGDdgdxHN2icBnh4s8mYKFtQeBUndqbTecASyPl+aTiUgSBcalGJ52VnmjCa/G&#10;+BkNRJzD2MsYVWc3AkBpi81UWVThDaiMirlQKOOX5+rk2ES+w35dCAfWVwWNJuad&#10;qupYESZhCNSie29WTuvVJGwsyQMrpHZOPULoYtdC&#10;-----END RSA PRIVATE KEY-----"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "RSA_PUBLIC_KEY"
+            value = "-----BEGIN PUBLIC KEY-----&#10;MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgEaUb1IpGaT6Rsmwz04QdIMQ4Qzz&#10;okfjk6kzhkGBINXiVrsuYNfewIU2UpiSq88w1yum23cBiW1QaN/RvaWqz8bajLMh&#10;88w/JA0s20FWkUgQqnFs6+yx6VfSRMr55fVs1bvfwofvaAA9OnwJxbCF54qxU56K&#10;yzHFjZ3c5JJ2gUuZAgMBAAE=&#10;-----END PUBLIC KEY-----"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

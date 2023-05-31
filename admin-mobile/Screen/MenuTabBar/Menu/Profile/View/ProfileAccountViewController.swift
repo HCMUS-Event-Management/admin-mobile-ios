@@ -140,7 +140,7 @@ extension ProfileAccountViewController: UITableViewDelegate {
         if(indexPath.section == 2 && indexPath.row == 0) {
             changeScreen(modelType: ProfileDetailViewController.self, id: "ProfileDetailViewController")
         } else if (indexPath.section == 2 && indexPath.row == 1) {
-            changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
+//            changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
         } else if (indexPath.section == 1 && indexPath.row == 1) {
             changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
         } else if (indexPath.section == 2 && indexPath.row == 6) {

@@ -6,32 +6,10 @@
 //
 
 import UIKit
-//
-//class ScanQRViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Do any additional setup after loading the view.
-//    }
-//    
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}
-//
-
 import AVFoundation
 class ScanQRViewController: UIViewController {
-
+    let alert = AlertView.instance
+    private var VM = ScanViewModel()
     @IBOutlet weak var topbar: UIView!
     @IBOutlet weak var msg: UILabel!
     
@@ -42,7 +20,41 @@ class ScanQRViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuration()
+    }
+    
+}
 
+extension ScanQRViewController: AVCaptureMetadataOutputObjectsDelegate {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        if metadataObjects.count == 0 {
+            qrCodeFrameView?.frame = CGRect.zero
+            return
+        }
+        
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        
+        if metadataObj.type == AVMetadataObject.ObjectType.qr {
+            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
+            qrCodeFrameView?.frame  = barCodeObject!.bounds
+            
+            if metadataObj.stringValue !=  nil {
+//                let infoTicket = decodeRSA(from: metadataObj.stringValue!)
+                let infoTicket = metadataObj.stringValue!
+                let infoTicketArr = infoTicket.components(separatedBy: "-")
+                
+                let info = VadilateTicketDto(eventId: Int(infoTicketArr[0]), ownerId: Int(infoTicketArr[2]), ticketCode: infoTicketArr[1])
+                VM.vadilateTicket(from: info)
+                self.captureSession.stopRunning()
+
+            }
+        }
+    }
+}
+
+extension ScanQRViewController {
+
+    func configuration() {
         // lay camera sau
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
             print("Failed to get the camera device")
@@ -74,12 +86,10 @@ class ScanQRViewController: UIViewController {
             videoPreviewLayer?.frame = view.layer.frame
             view.layer.addSublayer(videoPreviewLayer!)
             
+            
             // start video capture
             captureSession.startRunning()
             
-            //
-            view.bringSubviewToFront(msg)
-            view.bringSubviewToFront(topbar)
             
             // init qr code frame
             
@@ -97,40 +107,67 @@ class ScanQRViewController: UIViewController {
             return
         }
         
+        alert.delegate = self
+        
+        initViewModel()
+        observeEvent()
+    }
+
+    func initViewModel() {
+        
+    }
+
+    // Data binding event observe - communication
+    func observeEvent() {
+        var loader:UIAlertController?
+
+        VM.eventHandler = { [weak self] event in
+            switch event {
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                self?.stoppedLoader(loader: loader ?? UIAlertController())
+            case .dataLoaded: break
+            case .error(let error):
+                print(error)
+//                let err = error as! DataError
+                DispatchQueue.main.async {
+                    self?.qrCodeFrameView?.frame = CGRect.zero
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    self?.alert.showAlert(title: "Failure", message: error ?? "You are not loged into the system.", alertType: .failure)
+                }
                 
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension ScanQRViewController: AVCaptureMetadataOutputObjectsDelegate {
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if metadataObjects.count == 0 {
-            qrCodeFrameView?.frame = CGRect.zero
-            msg.text = "No QR code is detected"
-            return
-        }
-        
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-        
-        if metadataObj.type == AVMetadataObject.ObjectType.qr {
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
-            qrCodeFrameView?.frame  = barCodeObject!.bounds
-            
-            if metadataObj.stringValue !=  nil {
-                msg.text = metadataObj.stringValue
+                
+                
+//                if (err == DataError.invalidResponse400) {
+//                    DispatchQueue.main.async {
+//                        self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
+//                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+//                    }
+//                }
+                
+                
+//                if let err = error as? DataError.invalidResponse400 ,  let msg = err.localizedDescription {
+//                    print(msg)
+//
+//                }
+                
+            case .vadilateTicket:
+                DispatchQueue.main.async {
+                    self?.qrCodeFrameView?.frame = CGRect.zero
+                    self?.alert.showAlert(title: "Success", message: "Đã kiểm tra vé thành công", alertType: .success)
+                }
+                
             }
         }
     }
+    
 }
 
+extension ScanQRViewController: AlertViewDelegate{
+    func alertViewDidDismiss() {
+        // Trả lại quyền kiểm soát cho lớp gọi
+        self.captureSession.startRunning()
+    }
+
+}
