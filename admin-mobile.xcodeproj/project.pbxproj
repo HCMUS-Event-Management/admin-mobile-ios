@@ -127,6 +127,16 @@
 		A4E1574729E7E1C200853BD2 /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E1570829E7E1C100853BD2 /* ScanQRViewController.swift */; };
 		A4E1576129E7E1C200853BD2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E1572A29E7E1C100853BD2 /* MenuViewController.swift */; };
 		A4E1576B29E7FF0200853BD2 /* LoginFirstScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E1576A29E7FF0200853BD2 /* LoginFirstScreenViewController.swift */; };
+		A4F8DFC02A2874100027E27E /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFBF2A2874100027E27E /* UploadAvatarDto.swift */; };
+		A4F8DFCA2A29859C0027E27E /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFC52A29859C0027E27E /* ChangePasswordViewModel.swift */; };
+		A4F8DFCB2A29859C0027E27E /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFC72A29859C0027E27E /* ChangePassword.swift */; };
+		A4F8DFCC2A29859C0027E27E /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFC92A29859C0027E27E /* ChangePasswordViewController.swift */; };
+		A4F8DFD52A2987540027E27E /* ForgetPasswordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFCF2A2987540027E27E /* ForgetPasswordDto.swift */; };
+		A4F8DFD62A2987540027E27E /* SendOTPDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFD02A2987540027E27E /* SendOTPDto.swift */; };
+		A4F8DFD72A2987540027E27E /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFD12A2987540027E27E /* ForgetPasswordViewController.swift */; };
+		A4F8DFD82A2987540027E27E /* ForgetPassword2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFD22A2987540027E27E /* ForgetPassword2ViewController.swift */; };
+		A4F8DFD92A2987540027E27E /* ForgetPassword3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFD32A2987540027E27E /* ForgetPassword3ViewController.swift */; };
+		A4F8DFDA2A2987540027E27E /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFD42A2987540027E27E /* ForgetPasswordViewModel.swift */; };
 		B5A2E07EBA21163944118A1B /* Pods_admin_mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0199781C115974E52E484BAB /* Pods_admin_mobile.framework */; };
 /* End PBXBuildFile section */
 
@@ -275,6 +285,16 @@
 		A4E1570829E7E1C100853BD2 /* ScanQRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
 		A4E1572A29E7E1C100853BD2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A4E1576A29E7FF0200853BD2 /* LoginFirstScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFirstScreenViewController.swift; sourceTree = "<group>"; };
+		A4F8DFBF2A2874100027E27E /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
+		A4F8DFC52A29859C0027E27E /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		A4F8DFC72A29859C0027E27E /* ChangePassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		A4F8DFC92A29859C0027E27E /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		A4F8DFCF2A2987540027E27E /* ForgetPasswordDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordDto.swift; sourceTree = "<group>"; };
+		A4F8DFD02A2987540027E27E /* SendOTPDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendOTPDto.swift; sourceTree = "<group>"; };
+		A4F8DFD12A2987540027E27E /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		A4F8DFD22A2987540027E27E /* ForgetPassword2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPassword2ViewController.swift; sourceTree = "<group>"; };
+		A4F8DFD32A2987540027E27E /* ForgetPassword3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPassword3ViewController.swift; sourceTree = "<group>"; };
+		A4F8DFD42A2987540027E27E /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewModel.swift; sourceTree = "<group>"; };
 		A7EFF0AE2673A31B81EA6C38 /* Pods-admin-mobile-admin-mobileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-admin-mobile-admin-mobileUITests.debug.xcconfig"; path = "Target Support Files/Pods-admin-mobile-admin-mobileUITests/Pods-admin-mobile-admin-mobileUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E2C39E7D79683458869E3204 /* Pods-admin-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-admin-mobile.debug.xcconfig"; path = "Target Support Files/Pods-admin-mobile/Pods-admin-mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		F8E2CF5E6DD8EDAD595EA37F /* Pods-admin-mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-admin-mobileTests.debug.xcconfig"; path = "Target Support Files/Pods-admin-mobileTests/Pods-admin-mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -578,6 +598,8 @@
 		A45EBBA229D40B5300120D06 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A4F8DFCD2A2987540027E27E /* ForgetPassword */,
+				A4F8DFC32A29859C0027E27E /* ChangePassword */,
 				A42C5D762A264A25008B23A6 /* DetailEvent */,
 				A480744B2A25061700FD001C /* CustomAlert */,
 				A4E156DB29E7E1C100853BD2 /* MenuTabBar */,
@@ -760,6 +782,7 @@
 				A4E156EA29E7E1C100853BD2 /* UserProfile.swift */,
 				A4E156EB29E7E1C100853BD2 /* ReponseCommon.swift */,
 				A4E156EC29E7E1C100853BD2 /* ResponseMyProfile.swift */,
+				A4F8DFBF2A2874100027E27E /* UploadAvatarDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -832,6 +855,62 @@
 			isa = PBXGroup;
 			children = (
 				A4E1570829E7E1C100853BD2 /* ScanQRViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A4F8DFC32A29859C0027E27E /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				A4F8DFC42A29859C0027E27E /* VM */,
+				A4F8DFC62A29859C0027E27E /* Model */,
+				A4F8DFC82A29859C0027E27E /* View */,
+			);
+			name = ChangePassword;
+			path = "admin-mobile/ChangePassword";
+			sourceTree = SOURCE_ROOT;
+		};
+		A4F8DFC42A29859C0027E27E /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				A4F8DFC52A29859C0027E27E /* ChangePasswordViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		A4F8DFC62A29859C0027E27E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A4F8DFC72A29859C0027E27E /* ChangePassword.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A4F8DFC82A29859C0027E27E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A4F8DFC92A29859C0027E27E /* ChangePasswordViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A4F8DFCD2A2987540027E27E /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				A4F8DFCE2A2987540027E27E /* View */,
+			);
+			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		A4F8DFCE2A2987540027E27E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A4F8DFCF2A2987540027E27E /* ForgetPasswordDto.swift */,
+				A4F8DFD02A2987540027E27E /* SendOTPDto.swift */,
+				A4F8DFD12A2987540027E27E /* ForgetPasswordViewController.swift */,
+				A4F8DFD22A2987540027E27E /* ForgetPassword2ViewController.swift */,
+				A4F8DFD32A2987540027E27E /* ForgetPassword3ViewController.swift */,
+				A4F8DFD42A2987540027E27E /* ForgetPasswordViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1113,6 +1192,7 @@
 				A42C5D752A264991008B23A6 /* UINavigationBar+Shadow.swift in Sources */,
 				A42C5DC12A26590A008B23A6 /* TypeCollectionViewCell.swift in Sources */,
 				A42C5D4F2A26428A008B23A6 /* DataReponseSearch.swift in Sources */,
+				A4F8DFCB2A29859C0027E27E /* ChangePassword.swift in Sources */,
 				A46147CA29EA80D600A90A0E /* Events.swift in Sources */,
 				A42C5D6E2A264988008B23A6 /* Bundle+JSON.swift in Sources */,
 				A4C37AF829EBCE5200322D9F /* ReponseValidateTicket.swift in Sources */,
@@ -1127,6 +1207,7 @@
 				A42C5D8E2A264A25008B23A6 /* DataReponseDetailEvent.swift in Sources */,
 				A42C5D502A26428A008B23A6 /* App.swift in Sources */,
 				A42C5D5C2A26428A008B23A6 /* ContentStateViewController.swift in Sources */,
+				A4F8DFD82A2987540027E27E /* ForgetPassword2ViewController.swift in Sources */,
 				A42C5D9E2A264AAE008B23A6 /* Location.swift in Sources */,
 				A42C5D572A26428A008B23A6 /* EmptyTableViewCell.swift in Sources */,
 				A46147CE29EA835000A90A0E /* Roles.swift in Sources */,
@@ -1149,20 +1230,24 @@
 				A4C37AF229EBCC4700322D9F /* ScanViewModel.swift in Sources */,
 				A42C5D862A264A25008B23A6 /* DetailEventViewController.swift in Sources */,
 				A42C5D4D2A26428A008B23A6 /* SearchType.swift in Sources */,
+				A4F8DFD62A2987540027E27E /* SendOTPDto.swift in Sources */,
 				A45EBB7A29D3E54B00120D06 /* admin_mobile.xcdatamodeld in Sources */,
 				A42C5DAE2A264C97008B23A6 /* InfoEventTableViewCell.swift in Sources */,
 				A4E156D429E7E0A000853BD2 /* DataReponseLogin.swift in Sources */,
 				A42C5D902A264A25008B23A6 /* ProposalSessionTickets.swift in Sources */,
 				A42C5D4C2A26428A008B23A6 /* ReponseSearch.swift in Sources */,
+				A4F8DFDA2A2987540027E27E /* ForgetPasswordViewModel.swift in Sources */,
 				A42C5D532A26428A008B23A6 /* EventsTableViewController.swift in Sources */,
 				A4C37AF529EBCCB200322D9F /* VadilateTicketDto.swift in Sources */,
 				A4E1574729E7E1C200853BD2 /* ScanQRViewController.swift in Sources */,
 				A45EBB7029D3E54B00120D06 /* AppDelegate.swift in Sources */,
+				A4F8DFC02A2874100027E27E /* UploadAvatarDto.swift in Sources */,
 				A42C5D6F2A264988008B23A6 /* Array+SafeIndex.swift in Sources */,
 				A4E1572D29E7E1C200853BD2 /* ProfileViewModel.swift in Sources */,
 				A42C5D672A2645CB008B23A6 /* Designable.swift in Sources */,
 				A42C5D732A264991008B23A6 /* String+CasePrefix.swift in Sources */,
 				A4E1573929E7E1C200853BD2 /* IconMenuTableViewCell.swift in Sources */,
+				A4F8DFCA2A29859C0027E27E /* ChangePasswordViewModel.swift in Sources */,
 				A4E1572F29E7E1C200853BD2 /* DateMyProfile.swift in Sources */,
 				A4E1574529E7E1C200853BD2 /* ProfileDetailTableViewCell.swift in Sources */,
 				A42C5DC22A26590A008B23A6 /* EventCollectionViewCell.swift in Sources */,
@@ -1174,11 +1259,13 @@
 				A4E156D229E7E0A000853BD2 /* GetUserInfor.swift in Sources */,
 				A4E156CA29E7DF6B00853BD2 /* Extensions.swift in Sources */,
 				A42C5D522A26428A008B23A6 /* SearchViewController.swift in Sources */,
+				A4F8DFD72A2987540027E27E /* ForgetPasswordViewController.swift in Sources */,
 				A4E1576129E7E1C200853BD2 /* MenuViewController.swift in Sources */,
 				A42C5DA02A264AAE008B23A6 /* ReponseListEvent.swift in Sources */,
 				A42C5D742A264991008B23A6 /* UIViewController+Child.swift in Sources */,
 				A4E1573629E7E1C200853BD2 /* ProfileAccountViewController.swift in Sources */,
 				A4E156C729E7DF3500853BD2 /* Contanst.swift in Sources */,
+				A4F8DFD52A2987540027E27E /* ForgetPasswordDto.swift in Sources */,
 				A42C5D562A26428A008B23A6 /* EventTableViewCell.swift in Sources */,
 				A4E1573B29E7E1C200853BD2 /* EditProfileButtonTableViewCell.swift in Sources */,
 				A4E1573029E7E1C200853BD2 /* ReponseError.swift in Sources */,
@@ -1188,6 +1275,7 @@
 				A42C5DA12A264AAE008B23A6 /* HomeCollectionReusableView.swift in Sources */,
 				A4E1572E29E7E1C200853BD2 /* UpdateProfile.swift in Sources */,
 				A42C5D512A26428A008B23A6 /* SearchViewModel.swift in Sources */,
+				A4F8DFD92A2987540027E27E /* ForgetPassword3ViewController.swift in Sources */,
 				A43052262A277CF100DB9A92 /* AlertView.swift in Sources */,
 				A42C5D8D2A264A25008B23A6 /* Sessions.swift in Sources */,
 				A42C5D882A264A25008B23A6 /* EventSessionTableViewCell.swift in Sources */,
@@ -1197,6 +1285,7 @@
 				A42C5D9C2A264AAE008B23A6 /* HomeViewModel.swift in Sources */,
 				A4E156DA29E7E11000853BD2 /* TokenService.swift in Sources */,
 				A42C5D9F2A264AAE008B23A6 /* Category.swift in Sources */,
+				A4F8DFCC2A29859C0027E27E /* ChangePasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

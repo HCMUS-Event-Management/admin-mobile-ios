@@ -91,6 +91,19 @@ extension ProfileAccountViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as? InfoTableViewCell {
+                if let url = URL(string: (VM.userInfoDetail?.avatar) ?? "") {
+                    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                        guard let data = data, error == nil else { return }
+                        
+                        DispatchQueue.main.async { /// execute on main thread
+                            cell.imgAvatar.image = UIImage(data: data)
+                        }
+                    }
+                    
+                    task.resume()
+                } else {
+                    cell.imgAvatar.image = UIImage(named: "avatar test")
+                }
                 cell.txtName.text = self.VM.userInfoDetail?.fullName
                 return cell
             }

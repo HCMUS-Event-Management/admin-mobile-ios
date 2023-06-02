@@ -6,8 +6,8 @@
 //
 
 import UIKit
-//import DropDown
-class EditProfileViewController: UIViewController, EditProfileButtonTableViewCellDelegate {
+import DropDown
+class EditProfileViewController: UIViewController, EditProfileButtonTableViewCellDelegate , UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     func backScreen() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -19,20 +19,29 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         let dot = tb.cellForRow(at: [0,4]) as? ProfileDetailTableViewCell
         let idCard = tb.cellForRow(at: [0,5]) as? ProfileDetailTableViewCell
         let gender = tb.cellForRow(at: [0,6]) as? ProfileDetailTableViewCell
-        
-        if (fullname?.tf.text == VM.userInfoDetail?.fullName && phone?.tf.text == VM.userInfoDetail?.phone && dot?.tf.text == VM.userInfoDetail?.birthday && idCard?.tf.text == VM.userInfoDetail?.identityCard && gender?.tf.text == VM.userInfoDetail?.gender && address?.tf.text == VM.userInfoDetail?.address){
-            showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
-        } else {
-            let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: VM.userInfoDetail?.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "", avatar: VM.userInfoDetail?.avatar ?? "", address: address?.tf.text ?? "", isDeleted: false)
-            
-            VM.updateUserDetail(params: infoProfile)
+        convertImageUrlToUploadDto(urlString: VM.userInfoDetail?.avatar ?? "https://nestjs-user-auth-service-bucket.s3.ap-southeast-1.amazonaws.com/user_id_3/avatar/vT6eDoY3T1umU3rTtkoiV5QTve0yTBQTx5R3XLjRlr5tGNwwB1.%28format_file%3A%20jpeg") { (uploadDto) in
+            if let uploadDto = uploadDto {
+                DispatchQueue.main.async {
+                    if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == self.VM.userInfoDetail?.birthday && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
+                        self.showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
+                    } else {
+                        let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.VM.userInfoDetail?.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
+                        self.VM.updateUserDetail(params: infoProfile)
+                    }
+                }
+            } else {
+                self.showToast(message: "Lỗi trong quá trình update của convert link ảnh sang updaload avatar", font: .systemFont(ofSize: 12))
+            }
         }
+        
+        
         
     }
     
     var VM = ProfileViewModel()
 
-    
+    var imagePicker = UIImagePickerController()
+
 
     var dataLabel = ["Fullname:","Number phone:","Address:","Birthday:","Identity card:","Gender:"]
     var dataPlaceHolder = ["Ex: ngyenvana@gmail.com","Ex: 01234567892","Ex: 123 Võ Văn Kiệt, P6, Quận 5, TP.HCM","Ex: 09/07/2001","Ex: 212950358","Ex: Male"]
@@ -41,12 +50,25 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        self.VM.getUserDetailFromLocalDB()
         self.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configNaviBar()
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        if let image = info[.originalImage] as? UIImage {
+            let imageData:Data = image.pngData()!
+            VM.uploadAvatar(imageData: imageData)
+        } else{
+           print("Something went wrong")
+        }
+        
+       self.dismiss(animated: true, completion: nil)
+      }
     
     func configNaviBar() {
         navigationController?.navigationBar.tintColor = .label
@@ -73,6 +95,31 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
 
     }
   
+    
+    
+    func convertImageUrlToUploadDto(urlString: String, completion: @escaping (UploadAvatarDto?) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            let base64String = imageData.base64EncodedString()
+            
+            let pathExtension = url.pathExtension
+            
+            var uploadDto = UploadAvatarDto(mime: "image/(format_file: \(pathExtension))", data: base64String)
+            
+            completion(uploadDto)
+        }
+        
+        task.resume()
+    }
 
 }
 
@@ -88,6 +135,35 @@ extension EditProfileViewController: UITableViewDataSource {
         
         if (indexPath.row == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileTableViewCell", for: indexPath) as? EditProfileTableViewCell {
+                
+                if let url = URL(string: (VM.userInfoDetail?.avatar) ?? "") {
+                    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                        guard let data = data, error == nil else { return }
+                        
+                        DispatchQueue.main.async { /// execute on main thread
+                            cell.avatar.image = UIImage(data: data)
+                        }
+                    }
+                    
+                    task.resume()
+                } else {
+                    cell.avatar.image = UIImage(named: "avatar test")
+                }
+                
+                
+                
+                
+                cell.callback = {
+                    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+                        print("Button capture")
+            
+                        self.imagePicker.delegate = self
+                        self.imagePicker.sourceType = .savedPhotosAlbum
+                        self.imagePicker.allowsEditing = false
+            
+                        self.present(self.imagePicker, animated: true, completion: nil)
+                    }
+                }
                 return cell
             }
         } else if(indexPath.row == dataLabel.count + 1){
@@ -124,15 +200,30 @@ extension EditProfileViewController: UITableViewDataSource {
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                
+
                 let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
 
-                
+                var formattedDate: String
                 if #available(iOS 15.0, *) {
-                    cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+                    formattedDate = date?.formatted(date: .abbreviated, time: .shortened) ?? ""
                 } else {
-                    // Fallback on earlier versions
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .short
+                    formattedDate = newDateFormatter.string(from: date ?? Date())
                 }
+
+                cell.tf.text = formattedDate
+
+                
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+//
+//
+//                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
                 
                 // date Picker
                 let datePicker = UIDatePicker()
@@ -158,24 +249,24 @@ extension EditProfileViewController: UITableViewDataSource {
                 // dropDown
                 let countryValuesArray = ["MALE", "FEMALE"]
 
-//                let myDropDown = DropDown()
-//                myDropDown.anchorView = cell.mainView
-//                myDropDown.dataSource = countryValuesArray
-//                myDropDown.bottomOffset = CGPoint(x: 0, y: (myDropDown.anchorView?.plainView.bounds.height)!)
-//                myDropDown.topOffset = CGPoint(x: 0, y: -(myDropDown.anchorView?.plainView.bounds.height)!)
-//                myDropDown.direction = .bottom
-//                
-//                myDropDown.selectionAction = { (index: Int, item: String) in
-//                    self.VM.userInfoDetail?.gender = countryValuesArray[index]
-////                    self.tb.reloadData()
-//                    self.tb.reloadRows(at: [indexPath], with: .none)
-//
-//                }
-//                
-//                cell.callback = {
-//                    cell.tf.endEditing(true)
-//                    myDropDown.show()
-//                }
+                let myDropDown = DropDown()
+                myDropDown.anchorView = cell.mainView
+                myDropDown.dataSource = countryValuesArray
+                myDropDown.bottomOffset = CGPoint(x: 0, y: (myDropDown.anchorView?.plainView.bounds.height)!)
+                myDropDown.topOffset = CGPoint(x: 0, y: -(myDropDown.anchorView?.plainView.bounds.height)!)
+                myDropDown.direction = .bottom
+                
+                myDropDown.selectionAction = { (index: Int, item: String) in
+                    self.VM.userInfoDetail?.gender = countryValuesArray[index]
+//                    self.tb.reloadData()
+                    self.tb.reloadRows(at: [indexPath], with: .none)
+
+                }
+                
+                cell.callback = {
+                    cell.tf.endEditing(true)
+                    myDropDown.show()
+                }
                 
                 //default
                 cell.tf.text = VM.userInfoDetail?.gender
@@ -199,9 +290,9 @@ extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if (indexPath.row == 0) {
-            return tableView.layer.frame.height/5
+            return (tableView.layer.frame.height/12) * 3
         }
-        return tableView.layer.frame.height/9
+        return (tableView.layer.frame.height/11)
     }
     
 }
@@ -223,8 +314,6 @@ extension EditProfileViewController {
     }
 
     func initViewModel() {
-//        self.VM.updateUserDetail()
-        self.VM.fetchUserDetail()
     }
 
     // Data binding event observe - communication
@@ -243,22 +332,31 @@ extension EditProfileViewController {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
-            case .error(let error):                
+            case .error(let error):
 //                let err = error as! DataError
                 if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 11.0))
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                     }
-                } else {
+                } else if (error == DataError.invalidResponse500.localizedDescription){
                     DispatchQueue.main.async {
-                        self?.showToast(message: error!, font: .systemFont(ofSize: 11.0))
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }
             case .logout: break
             case .updateProfile:
-                self?.VM.fetchUserDetail()
+                DispatchQueue.main.async {
+                    self?.VM.getUserDetailFromSever()
+                }
                 //reloadtb
             }
         }

@@ -86,7 +86,7 @@ class LoginFirstScreenViewController: UIViewController {
     }
     
     @IBAction func forgetPassword(_ sender: UIButton) {
-//        self.changeScreen(modelType: ForgetPasswordViewController.self, id: "ForgetPasswordViewController")
+        self.changeScreen(modelType: ForgetPasswordViewController.self, id: "ForgetPasswordViewController")
     }
     
     override func viewDidLoad() {

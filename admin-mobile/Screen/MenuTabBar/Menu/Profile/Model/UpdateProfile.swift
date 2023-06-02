@@ -13,8 +13,6 @@ struct UpdateProfile: Codable {
     let birthday : String?
     let identityCard : String?
     let gender : String?
-    let avatar : String?
     let address : String?
-    let isDeleted : Bool?
-
+    let image: UploadAvatarDto?
 }
