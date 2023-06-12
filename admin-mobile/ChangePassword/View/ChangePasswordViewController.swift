@@ -49,7 +49,7 @@ extension ChangePasswordViewController: UITableViewDataSource {
         if(indexPath.row == dataLabel.count){
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileButtonTableViewCell", for: indexPath) as? EditProfileButtonTableViewCell {
                 cell.delegate = self
-                cell.btnSelect.setTitle("Change", for: .normal)
+                cell.btnSelect.setTitle("Thay đổi", for: .normal)
                 return cell
             }
         } else {

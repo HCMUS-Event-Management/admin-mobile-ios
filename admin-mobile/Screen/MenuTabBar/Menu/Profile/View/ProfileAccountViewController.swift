@@ -19,41 +19,10 @@ class ProfileAccountViewController: UIViewController {
         super.viewDidLoad()
         configuration()
     }
-
-//    func changeScreen<T: UIViewController>(
-//        modelType: T.Type,
-//        id: String
-//    ) {
-//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-//            return
-//        }
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-        
-
     
     override func viewWillAppear(_ animated: Bool) {
-        VM.fetchUserDetail()
-
+        VM.getUserDetailFromLocalDB()
         tabBarController?.tabBar.isHidden = false
-//        let title = UILabel()
-//        title.text = "Profile"
-//        title.font = UIFont(name: "Helvetica Bold", size: 18)
-//        title.textAlignment = .center
-//
-//
-//        let spacer = UIView()
-//
-//        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
-//        constraint.isActive = true
-//        constraint.priority = .defaultLow
-//
-//        let stack = UIStackView(arrangedSubviews: [title, spacer])
-//        stack.axis = .horizontal
-//
-//        navigationItem.titleView = stack
-        
-        
         configNaviBar()
 
     }
@@ -63,7 +32,7 @@ class ProfileAccountViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Profile"
+        title.text = "Thông tin"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -78,9 +47,9 @@ extension ProfileAccountViewController: UITableViewDataSource {
         if (section == 0) {
             return 1
         } else if(section == 1){
-            return 2
+            return 1
         } else {
-            return 7
+            return 5
         }
     }
     
@@ -91,6 +60,7 @@ extension ProfileAccountViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as? InfoTableViewCell {
+                
                 if let url = URL(string: (VM.userInfoDetail?.avatar) ?? "") {
                     let task = URLSession.shared.dataTask(with: url) { data, response, error in
                         guard let data = data, error == nil else { return }
@@ -104,7 +74,9 @@ extension ProfileAccountViewController: UITableViewDataSource {
                 } else {
                     cell.imgAvatar.image = UIImage(named: "avatar test")
                 }
-                cell.txtName.text = self.VM.userInfoDetail?.fullName
+                
+                
+                cell.txtName.text = VM.userInfoDetail?.fullName
                 return cell
             }
         } else if (indexPath.section == 1){
@@ -131,9 +103,9 @@ extension ProfileAccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if (indexPath.section == 0) {
-            return 170
+            return (tableView.layer.frame.height/13) * 3.8
         }
-        return 55
+        return (tableView.layer.frame.height/10)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -148,15 +120,12 @@ extension ProfileAccountViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
         
         if(indexPath.section == 2 && indexPath.row == 0) {
             changeScreen(modelType: ProfileDetailViewController.self, id: "ProfileDetailViewController")
-        } else if (indexPath.section == 2 && indexPath.row == 1) {
-//            changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
         } else if (indexPath.section == 1 && indexPath.row == 1) {
             changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
-        } else if (indexPath.section == 2 && indexPath.row == 6) {
+        } else if (indexPath.section == 2 && indexPath.row == 4) {
             VM.logout()
         }
     }
@@ -209,11 +178,11 @@ extension ProfileAccountViewController {
             case .logout:
                 // xử lý logout tại đây
                 DispatchQueue.main.async {
-                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController
+                    let navVC = UINavigationController(rootViewController: vc!)
+                    appDelegate?.window?.rootViewController = navVC
                 }
-
-
-                print("logout")
             case .updateProfile: break
                 // gọi realoadtb
             }

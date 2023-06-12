@@ -12,7 +12,7 @@ class ProfileDetailViewController: UIViewController {
     @IBOutlet weak var btnDeleteaccount: UIButton!
     @IBOutlet weak var btnChangepassword: UIButton!
     @IBOutlet weak var tb: UITableView!
-    var dataLabel = ["Email:","Number phone:","Address:","Birthday:","Identity card:","Gender:"]
+    var dataLabel = ["Email:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh nhân dân:","Giới tính:"]
     
     
     
@@ -29,8 +29,8 @@ class ProfileDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
 
-        VM.fetchUserDetail()
-        self.tb.reloadData()
+        self.VM.getUserDetailFromLocalDB()
+
         
         tabBarController?.tabBar.isHidden = true
         
@@ -51,7 +51,7 @@ class ProfileDetailViewController: UIViewController {
         
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Profile"
+        title.text = "Thông tin"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         

@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     
     private var VM = HomeViewModel()
     
-    private var titleSection = ["Ongoing Events 🔥","Upcoming Events ✨"]
+    private var titleSection = ["Sự kiện đang diễn ra 🔥","Sự kiện sắp diễn ra    ✨"]
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
@@ -73,8 +73,12 @@ extension HomeViewController: UICollectionViewDataSource {
             let eventGoingOnEvent = self.VM.goingOnEvent[indexPath.row]
             if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                 cell.eventName.text = eventGoingOnEvent.title
-                cell.owner.text = "By \(eventGoingOnEvent.user!.fullName)"
-                cell.paidName.text = eventGoingOnEvent.type
+                cell.owner.text = "Bởi \(eventGoingOnEvent.user!.fullName)"
+                if eventGoingOnEvent.type == "PAID" {
+                    cell.paidName.text = "Có Phí"
+                } else {
+                    cell.paidName.text = "Miễn Phí"
+                }
                 
                 if #available(iOS 15.0, *) {
                     cell.timeStart.text = eventGoingOnEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
@@ -105,8 +109,12 @@ extension HomeViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                 
                 cell.eventName.text = eventIsCommingEvent.title
-                cell.owner.text = "By \(eventIsCommingEvent.user!.fullName)"
-                cell.paidName.text = eventIsCommingEvent.type
+                cell.owner.text = "Bởi \(eventIsCommingEvent.user!.fullName)"
+                if eventIsCommingEvent.type == "PAID" {
+                    cell.paidName.text = "Có Phí"
+                } else {
+                    cell.paidName.text = "Miễn Phí"
+                }
                 if #available(iOS 15.0, *) {
                     cell.timeStart.text = eventIsCommingEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
                 } else {

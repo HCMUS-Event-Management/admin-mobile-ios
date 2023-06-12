@@ -20,29 +20,45 @@ class EventTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         mainView.layer.cornerRadius = 20
         mainView.layer.masksToBounds = true
         title.text = app.title
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//        let startTime = dateFormatter.date(from:  app.startAt ?? "1970-01-01T00:00:00.000Z")
+//        let endTime = dateFormatter.date(from:  app.endAt ?? "1970-01-01T00:00:00.000Z")
+//        startAt.text = "\(startTime!.formatted(date: .omitted, time: .shortened)) - \(endTime!.formatted(date: .abbreviated, time: .shortened))"
+        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
-        let startTime = dateFormatter.date(from: app.startAt ?? "1970-01-01T00:00:00.000Z")
-        let endTime = dateFormatter.date(from: app.endAt ?? "1970-01-01T00:00:00.000Z")
+        let startDate = dateFormatter.date(from: app.startAt ?? "1970-01-01T00:00:00.000Z")
+        let endDate = dateFormatter.date(from: app.endAt ?? "1970-01-01T00:00:00.000Z")
 
-        let formattedStartTime: String
-        let formattedEndTime: String
+        var formattedStartDate: String
+        var formattedEndDate: String
 
         if #available(iOS 15.0, *) {
-            formattedStartTime = startTime?.formatted(date: .omitted, time: .shortened) ?? ""
-            formattedEndTime = endTime?.formatted(date: .abbreviated, time: .shortened) ?? ""
+            formattedStartDate = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+            formattedEndDate = endDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
         } else {
             let newDateFormatter = DateFormatter()
-            newDateFormatter.dateStyle = .none
-            newDateFormatter.timeStyle = .short
-
-            formattedStartTime = newDateFormatter.string(from: startTime ?? Date())
-            formattedEndTime = newDateFormatter.string(from: endTime ?? Date())
+            newDateFormatter.dateStyle = .short
+            newDateFormatter.timeStyle = .none
+            formattedStartDate = newDateFormatter.string(from: startDate ?? Date())
+            formattedEndDate = newDateFormatter.string(from: endDate ?? Date())
         }
 
-        startAt.text = "\(formattedStartTime) - \(formattedEndTime)"
+        let timeFormatter = DateFormatter()
+        timeFormatter.locale = Locale(identifier: "en_US_POSIX")
+        timeFormatter.dateFormat = "HH:mm"
+
+        let formattedStartTime = timeFormatter.string(from: startDate ?? Date())
+        let formattedEndTime = timeFormatter.string(from: endDate ?? Date())
+
+        startAt.text = """
+        \(formattedStartDate) \(formattedStartTime)
+        """
 
         
         location.text = app.location?.name

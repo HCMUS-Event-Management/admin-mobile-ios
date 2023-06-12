@@ -137,8 +137,13 @@ extension LoginFirstScreenViewController {
                 self?.stoppedLoader(loader: loader ?? UIAlertController())
             case .dataLoaded:
                 DispatchQueue.main.async {
-                    self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 11.0))
-                    self?.changeScreen(modelType: UIViewController.self,id: "MenuTabBar")
+                    self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 12.0))
+
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController
+                    let navVC = UINavigationController(rootViewController: vc!)
+                    print(appDelegate?.window)
+                    appDelegate?.window?.rootViewController = navVC
                 }
             case .error(let error):
                 if (error == DataError.invalidResponse500.localizedDescription) {

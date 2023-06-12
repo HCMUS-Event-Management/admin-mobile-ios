@@ -76,53 +76,51 @@ class LoginFirstScreenViewModel {
 
                    
                     // check permisson
-                    APIManager.shared.request(modelType: ReponsePermissionEvents.self, type: UserEndPoint.me, params: nil, completion: {
-
-                        completion in
-                        switch completion {
-
-                        case .success(let value):
-                            let events = value.data?.events as? [Events]
-                            if (events!.isEmpty) {
-                                TokenService.tokenInstance.removeTokenAndInfo()
-                                self.eventHandler?(.permission)
-                                self.eventHandler?(.stopLoading)
-                            }
-                            events?.forEach({i in
-                                
-                                if i.roles!.contains(where: {$0 == "TICKET_COLLECTOR"}) {
-                                   // it exists, do something
-                                    self.queue.async {
-                                        //Lay du lieu tu server
-                                        self.fetchUserDetail()
-
-                                    }
-                                } else {
-                                    TokenService.tokenInstance.removeTokenAndInfo()
-                                    self.eventHandler?(.permission)
-                                    self.eventHandler?(.stopLoading)
-                                }
-                                
-                                
-                            })
-
-                        case .failure(let error):
-                            if case DataError.invalidResponse(let reason) = error {
-                                self.eventHandler?(.error(reason))
-                            }
-                            else {
-                                self.eventHandler?(.error(error.localizedDescription))
-                            }
-                        }
-
-                    })
-//                    self.queue.async {
-//                       //Lay du lieu tu server
-//                       self.fetchUserDetail()
+//                    APIManager.shared.request(modelType: ReponsePermissionEvents.self, type: UserEndPoint.me, params: nil, completion: {
 //
-//                   }
+//                        completion in
+//                        switch completion {
 //
-//                    
+//                        case .success(let value):
+//                            let events = value.data?.events as? [Events]
+//                            if (events!.isEmpty) {
+//                                TokenService.tokenInstance.removeTokenAndInfo()
+//                                self.eventHandler?(.permission)
+//                                self.eventHandler?(.stopLoading)
+//                            }
+//                            events?.forEach({i in
+//
+//                                if i.roles!.contains(where: {$0 == "TICKET_COLLECTOR"}) {
+//                                   // it exists, do something
+//                                    self.queue.async {
+//                                        //Lay du lieu tu server
+//                                        self.fetchUserDetail()
+//
+//                                    }
+//                                } else {
+//                                    TokenService.tokenInstance.removeTokenAndInfo()
+//                                    self.eventHandler?(.permission)
+//                                    self.eventHandler?(.stopLoading)
+//                                }
+//
+//
+//                            })
+//                        case .failure(let error):
+//                            if case DataError.invalidResponse(let reason) = error {
+//                                self.eventHandler?(.error(reason))
+//                            }
+//                            else {
+//                                self.eventHandler?(.error(error.localizedDescription))
+//                            }
+//                        }
+//
+//                    })
+                    self.queue.async {
+                       //Lay du lieu tu server
+                       self.fetchUserDetail()
+
+                   }
+                        
                     case .failure(let error):
                         if case DataError.invalidResponse(let reason) = error {
                             self.eventHandler?(.error(reason))

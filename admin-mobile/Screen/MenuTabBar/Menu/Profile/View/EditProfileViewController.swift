@@ -42,8 +42,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
 
     var imagePicker = UIImagePickerController()
 
-
-    var dataLabel = ["Fullname:","Number phone:","Address:","Birthday:","Identity card:","Gender:"]
+    var dataLabel = ["Họ và Tên:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh nhân dân:","Giới tính:"]
     var dataPlaceHolder = ["Ex: ngyenvana@gmail.com","Ex: 01234567892","Ex: 123 Võ Văn Kiệt, P6, Quận 5, TP.HCM","Ex: 09/07/2001","Ex: 212950358","Ex: Male"]
     
     @IBOutlet weak var tb: UITableView!
@@ -74,7 +73,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Edit Profile"
+        title.text = "Chỉnh sửa"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -169,7 +168,7 @@ extension EditProfileViewController: UITableViewDataSource {
         } else if(indexPath.row == dataLabel.count + 1){
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileButtonTableViewCell", for: indexPath) as? EditProfileButtonTableViewCell {
                 cell.delegate = self
-                cell.btnSelect.setTitle("Update", for: .normal)
+                cell.btnSelect.setTitle("Cập nhật", for: .normal)
 
                 return cell
             }
@@ -196,42 +195,23 @@ extension EditProfileViewController: UITableViewDataSource {
         } else if (indexPath.row == 4) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
-                
+
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
-                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+                let date = dateFormatter.date(from: VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
 
-                var formattedDate: String
                 if #available(iOS 15.0, *) {
-                    formattedDate = date?.formatted(date: .abbreviated, time: .shortened) ?? ""
+                    cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
                 } else {
-                    let newDateFormatter = DateFormatter()
-                    newDateFormatter.dateStyle = .short
-                    newDateFormatter.timeStyle = .short
-                    formattedDate = newDateFormatter.string(from: date ?? Date())
+                    // Xử lý cho phiên bản iOS dưới 15.0
+                    // Ví dụ: Hiển thị ngày giờ theo định dạng tùy chỉnh
+                    let customDateFormatter = DateFormatter()
+                    customDateFormatter.dateFormat = "yyyy-MM-dd"
+                    let dateString = customDateFormatter.string(from: date ?? Date())
+                    cell.tf.text = dateString
                 }
-
-                cell.tf.text = formattedDate
-
-                
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-//
-//                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
-//
-//
-//                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
-                
-                // date Picker
-                let datePicker = UIDatePicker()
-                datePicker.setDate(date ?? Date(), animated: true)
-                datePicker.datePickerMode = .date
-                datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
-                datePicker.preferredDatePickerStyle = .inline
-                cell.tf.inputView = datePicker
                 
                 return cell
             }
@@ -292,7 +272,7 @@ extension EditProfileViewController: UITableViewDelegate {
         if (indexPath.row == 0) {
             return (tableView.layer.frame.height/12) * 3
         }
-        return (tableView.layer.frame.height/11)
+        return (tableView.layer.frame.height/10)
     }
     
 }

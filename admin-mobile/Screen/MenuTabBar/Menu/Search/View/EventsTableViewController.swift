@@ -20,7 +20,7 @@ class EventsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Found \(VM.apps.count) results"
+        return "Tìm \(VM.apps.count) kết quả"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,8 +32,13 @@ class EventsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Contanst.userdefault.set(VM.apps[indexPath.row].id, forKey: "eventIdDetail")
-        callback?()
+        if VM.apps.count == 0 {
+            
+        } else {
+            Contanst.userdefault.set(VM.apps[indexPath.row].id, forKey: "eventIdDetail")
+            callback?()
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -12,8 +12,10 @@ class IconMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var icon: UIImageView!
     
-    var dataMenuAccount = ["Profile","Payment Methods","Payment History","Security","Language","Help Center","Logout"]
-    var dataMenuEvent = ["Magane Events","Favorite Events"]
+    var dataMenuAccount = ["Profile","Security","Language","Help Center","Logout"]
+    var dataMenuEvent = ["Magane Events"]
+    var dataMenuEventName = ["Quản lý sự kiện"]
+    var dataMenuAccountName = ["Thông tin","Bảo mật","Ngôn ngữ","Trung tập trợ giúp","Đăng xuất"]
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,12 +23,12 @@ class IconMenuTableViewCell: UITableViewCell {
     }
     
     func setDataAccount(id: Int) {
-        name.text = self.dataMenuAccount[id]
+        name.text = self.dataMenuAccountName[id]
         icon.image = UIImage(named: self.dataMenuAccount[id])
     }
     
     func setDataEvent(id: Int) {
-        name.text = self.dataMenuEvent[id]
+        name.text = self.dataMenuEventName[id]
         icon.image = UIImage(named: self.dataMenuEvent[id])
     }
 
