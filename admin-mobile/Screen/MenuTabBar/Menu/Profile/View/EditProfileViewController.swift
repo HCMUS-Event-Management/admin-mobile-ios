@@ -190,6 +190,7 @@ extension EditProfileViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.address
+                cell.tf.keyboardType = .asciiCapable
                 return cell
             }
         } else if (indexPath.row == 4) {
@@ -200,18 +201,37 @@ extension EditProfileViewController: UITableViewDataSource {
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
-                let date = dateFormatter.date(from: VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
 
+                var formattedDate: String
                 if #available(iOS 15.0, *) {
-                    cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+                    formattedDate = date?.formatted(date: .numeric, time: .omitted) ?? ""
                 } else {
-                    // Xử lý cho phiên bản iOS dưới 15.0
-                    // Ví dụ: Hiển thị ngày giờ theo định dạng tùy chỉnh
-                    let customDateFormatter = DateFormatter()
-                    customDateFormatter.dateFormat = "yyyy-MM-dd"
-                    let dateString = customDateFormatter.string(from: date ?? Date())
-                    cell.tf.text = dateString
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    formattedDate = newDateFormatter.string(from: date ?? Date())
                 }
+
+                cell.tf.text = formattedDate
+
+                
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+//
+//
+//                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+                
+                // date Picker
+                let datePicker = UIDatePicker()
+                datePicker.setDate(date ?? Date(), animated: true)
+                datePicker.datePickerMode = .date
+                datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+                datePicker.preferredDatePickerStyle = .inline
+                cell.tf.inputView = datePicker
                 
                 return cell
             }
@@ -302,13 +322,16 @@ extension EditProfileViewController {
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
-                loader = self?.loader()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    
+                    loader = self?.loader()
+                }
             case .stopLoading:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
@@ -322,7 +345,7 @@ extension EditProfileViewController {
                     }
                 } else if (error == DataError.invalidResponse500.localizedDescription){
                     DispatchQueue.main.async {
-                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.showToast(message: "Chưa kết nối mạng hoặc Hình avatar. quá nặng", font: .systemFont(ofSize: 12.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }

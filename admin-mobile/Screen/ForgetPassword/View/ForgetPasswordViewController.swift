@@ -38,9 +38,9 @@ class ForgetPasswordViewController: UIViewController {
     
     @objc func postAPI () {
         if txtEmail.text == ""{
-            print("email emtyp")
+            self.showToast(message: "Điền Email vào", font: .systemFont(ofSize: 12.0))
         } else if (!(txtEmail.text?.isValidEmail() ?? false)) {
-            print("email no")
+            self.showToast(message: "Không phải Email", font: .systemFont(ofSize: 12.0))
         } else {
             let params = SendOTPDto(email: txtEmail.text, type: "FORGET_PASSWORD")
             VM.sendOTPForget(from: params)

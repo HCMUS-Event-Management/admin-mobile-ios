@@ -172,11 +172,10 @@ extension DetailEventViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-//                print(self?.VM.detailEvent)
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())

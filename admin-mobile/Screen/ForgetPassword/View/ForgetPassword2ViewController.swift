@@ -34,7 +34,7 @@ class ForgetPassword2ViewController: UIViewController {
     }
     @objc func postAPI () {
         if otpCode.text == ""{
-            print("otp emtyp")
+            self.showToast(message: "Điền OTP", font: .systemFont(ofSize: 12))
         } else {
             Contanst.userdefault.set(otpCode.text, forKey: "otp")
             self.changeScreen(modelType: ForgetPassword3ViewController.self, id: "ForgetPassword3ViewController")

@@ -23,6 +23,16 @@ class ScanQRViewController: UIViewController {
         configuration()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        // stop video capture
+        captureSession.stopRunning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // start video capture
+        captureSession.startRunning()
+    }
+    
 }
 
 extension ScanQRViewController: AVCaptureMetadataOutputObjectsDelegate {
