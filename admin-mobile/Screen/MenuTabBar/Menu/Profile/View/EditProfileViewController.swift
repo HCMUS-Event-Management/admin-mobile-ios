@@ -406,6 +406,8 @@ extension EditProfileViewController {
                 //reloadtb
 //            case .deleteAcc:
 //                break
+            case .deleteAcc:
+                break
             }
         }
     }

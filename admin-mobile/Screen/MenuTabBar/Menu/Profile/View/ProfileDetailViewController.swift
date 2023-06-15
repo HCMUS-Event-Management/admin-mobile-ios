@@ -6,13 +6,13 @@
 //
 
 import UIKit
-
+import Reachability
 class ProfileDetailViewController: UIViewController {
 
     @IBOutlet weak var btnDeleteaccount: UIButton!
     @IBOutlet weak var btnChangepassword: UIButton!
     @IBOutlet weak var tb: UITableView!
-    var dataLabel = ["Email:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh nhân dân:","Giới tính:"]
+    var dataLabel = ["Email:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh thư:","Giới tính:"]
     
     
     
@@ -22,19 +22,21 @@ class ProfileDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         btnChangepassword.addTarget(self, action: #selector(changeChangePasswordController), for: .touchUpInside)
+        btnDeleteaccount.addTarget(self, action: #selector(deleteAccount), for: .touchUpInside)
 
+        configNaviBar()
         configuration()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-
         self.VM.getUserDetailFromLocalDB()
 
+//        VM.fetchUserDetail()
+//        self.tb.reloadData()
         
         tabBarController?.tabBar.isHidden = true
         
-        configNaviBar()
         
         btnDeleteaccount.layer.cornerRadius = 10
         btnDeleteaccount.layer.masksToBounds = true
@@ -62,6 +64,36 @@ class ProfileDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func showAlert() {
+        let alertController = UIAlertController(title: "Xoá Tài Khoản", message: "Bạn có thực sự muốn xoá tài khoản?", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            // OK button tapped
+            switch try! Reachability().connection {
+              case .wifi:
+                self.VM.deleteAccount()
+            case .cellular:
+                self.VM.deleteAccount()
+            case .none:
+                self.showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                self.showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
+        }
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            // Cancel button tapped
+            print("Cancel button tapped")
+        }
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func deleteAccount() {
+        showAlert()
+    }
     
     @objc func changeChangePasswordController() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordViewController") as? ChangePasswordViewController else {
@@ -95,6 +127,7 @@ extension ProfileDetailViewController: UITableViewDataSource {
         
         if (indexPath.row == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as? InfoTableViewCell {
+                
                 if let url = URL(string: (VM.userInfoDetail?.avatar) ?? "") {
                     let task = URLSession.shared.dataTask(with: url) { data, response, error in
                         guard let data = data, error == nil else { return }
@@ -108,6 +141,8 @@ extension ProfileDetailViewController: UITableViewDataSource {
                 } else {
                     cell.imgAvatar.image = UIImage(named: "avatar test")
                 }
+                
+                
                 cell.txtName.text = VM.userInfoDetail?.fullName
                 return cell
             }
@@ -135,7 +170,7 @@ extension ProfileDetailViewController: UITableViewDataSource {
         } else if (indexPath.row == 4) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
-
+                                
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -152,6 +187,15 @@ extension ProfileDetailViewController: UITableViewDataSource {
                     let dateString = customDateFormatter.string(from: date ?? Date())
                     cell.tf.text = dateString
                 }
+
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+//
+//
+//                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
                 
                 cell.tf.isEnabled = false // hợp lí
                 return cell
@@ -185,9 +229,9 @@ extension ProfileDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if (indexPath.row == 0) {
-            return tableView.layer.frame.height/4
+            return (tableView.layer.frame.height/10) * 3
         }
-        return tableView.layer.frame.height/8
+        return (tableView.layer.frame.height/9)
     }
     
 }
@@ -208,7 +252,6 @@ extension ProfileDetailViewController {
     }
 
     func initViewModel() {
-//        self.VM.fetchUserDetail()
     }
 
     // Data binding event observe - communication
@@ -217,24 +260,47 @@ extension ProfileDetailViewController {
 
         VM.eventHandler = { [weak self] event in
             switch event {
-            case .loading: break
-            case .stopLoading: break
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    
+                }
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                 }
             case .error(let error):
-                print(error)
-//                let err = error as! DataError
-//                if (err == DataError.invalidResponse401) {
-//                    DispatchQueue.main.async {
-//                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
-//                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
-//                    }
-//                }
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                } else if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
             case .logout: break
             case .updateProfile: break
                 //reloadtb
+            case .deleteAcc:
+                DispatchQueue.main.async {
+                    TokenService.tokenInstance.removeTokenAndInfo()
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController
+                    let navVC = UINavigationController(rootViewController: vc!)
+                    appDelegate?.window?.rootViewController = navVC
+                    self?.showToast(message: "Xoá tài khoản thành công", font: .systemFont(ofSize: 12.0))
+                }
             }
         }
     }

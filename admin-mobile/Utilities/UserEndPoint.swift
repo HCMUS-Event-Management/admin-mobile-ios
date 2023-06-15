@@ -19,6 +19,8 @@ enum UserEndPoint {
     case refreshToken(token: String) // POST
     case uploadAvatar // PUT
     case me  // GET
+    case deleteAcc(id: Int)
+
 
 }
 
@@ -50,6 +52,8 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/upload-avatar"
         case .me:
             return "api/v1/user-auth/user/me"
+        case .deleteAcc(let id):
+            return "api/v1/user-auth/user/delete/\(id)"
         }
    
 
@@ -88,35 +92,13 @@ extension UserEndPoint: EndPointType {
             return .put
         case .me:
             return .get
+        case .deleteAcc:
+            return .put
         }
     }
 
     var body: Encodable? {
-        switch self {
-        case .profile:
-            return nil
-        case .login(let Info):
-            return Info
-        case .logout:
-            return nil
-        case .updateProfile:
-            return nil
-        case .changePassword:
-            return nil
-        case .forgetPassword:
-            return nil
-        case .verifyToken:
-            return nil
-        case .refreshToken:
-            return nil
-        case .sendOTP:
-            return nil
-        case .uploadAvatar:
-            return nil
-        case .me:
-            return nil
-        }
-    
+        return nil
     }
 
     var headers: [String : String]? {
@@ -142,6 +124,8 @@ extension UserEndPoint: EndPointType {
         case .uploadAvatar:
             return APIManager.bearTokenHeaders
         case .me:
+            return APIManager.bearTokenHeaders
+        case .deleteAcc:
             return APIManager.bearTokenHeaders
         }
     }

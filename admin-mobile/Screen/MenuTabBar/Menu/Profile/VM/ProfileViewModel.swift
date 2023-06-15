@@ -15,6 +15,39 @@ final class ProfileViewModel {
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     
     
+    func deleteAccount() {
+        
+        if let savedUserData = Contanst.userdefault.object(forKey: "userInfo") as? Foundation.Data {
+            let decoder = JSONDecoder()
+            if let savedUser = try? decoder.decode(GetUserInfor.self, from: savedUserData) {
+                self.userInfo = savedUser
+//                if let intValue = userInfo?.id as? Int {
+                    self.eventHandler?(.loading)
+                    APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.deleteAcc(id: 6), params: nil, completion: {
+                        result in
+                        self.eventHandler?(.stopLoading)
+                        switch result {
+                        case .success(let data):
+                            self.eventHandler?(.deleteAcc)
+                        case .failure(let error):
+                            if case DataError.invalidResponse(let reason) = error {
+                                self.eventHandler?(.error(reason))
+                            }
+                            else {
+                                self.eventHandler?(.error(error.localizedDescription))
+                            }
+                        }
+                    })
+//                } else {
+//                    print("Failed to cast to Int")
+//                }
+            }
+        }
+        
+        
+        
+    }
+    
     func uploadAvatar(imageData: Data?) {
         self.eventHandler?(.loading)
 
@@ -120,10 +153,12 @@ extension ProfileViewModel {
         case error(String?)
         case logout
         case updateProfile
-//        case newProductAdded(product: AddProduct)
+        case deleteAcc
     }
 
 }
+
+
 
 
 extension ProfileViewModel {

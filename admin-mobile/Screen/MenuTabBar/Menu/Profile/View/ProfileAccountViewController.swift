@@ -194,6 +194,8 @@ extension ProfileAccountViewController {
                 }
             case .updateProfile: break
                 // gọi realoadtb
+            case .deleteAcc:
+                break
             }
         }
     }
