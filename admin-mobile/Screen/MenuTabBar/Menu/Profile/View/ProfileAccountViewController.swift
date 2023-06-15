@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ProfileAccountViewController: UIViewController {
 
     @IBOutlet weak var tb: UITableView!
@@ -126,7 +126,16 @@ extension ProfileAccountViewController: UITableViewDelegate {
         } else if (indexPath.section == 1 && indexPath.row == 1) {
             changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
         } else if (indexPath.section == 2 && indexPath.row == 4) {
-            VM.logout()
+            switch try! Reachability().connection {
+              case .wifi:
+                VM.logout()
+              case .cellular:
+                VM.logout()
+              case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
         }
     }
     

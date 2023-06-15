@@ -30,7 +30,11 @@ class ScanQRViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // start video capture
-        captureSession.startRunning()
+        DispatchQueue.global(qos: .background).async {
+            // Perform the startRunning operation on a background thread
+            self.captureSession.startRunning()
+        }
+
         configNaviBar()
     }
     
@@ -66,7 +70,7 @@ extension ScanQRViewController: AVCaptureMetadataOutputObjectsDelegate {
                 let infoTicketArr = infoTicket.components(separatedBy: "-")
                 
                 let info = VadilateTicketDto(eventId: Int(infoTicketArr[0]), ownerId: Int(infoTicketArr[2]), ticketCode: infoTicketArr[1])
-                VM.vadilateTicket(from: info)
+                VM.checkVadilateTicket(from: info)
                 self.captureSession.stopRunning()
 
             }

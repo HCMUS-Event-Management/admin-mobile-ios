@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ForgetPasswordViewController: UIViewController {
 
     @IBOutlet weak var btnGetNewPass: UIButton!
@@ -42,9 +42,17 @@ class ForgetPasswordViewController: UIViewController {
         } else if (!(txtEmail.text?.isValidEmail() ?? false)) {
             self.showToast(message: "Không phải Email", font: .systemFont(ofSize: 12.0))
         } else {
-            let params = SendOTPDto(email: txtEmail.text, type: "FORGET_PASSWORD")
-            VM.sendOTPForget(from: params)
             
+            switch try! Reachability().connection {
+              case .wifi:
+                let params = SendOTPDto(email: txtEmail.text, type: "FORGET_PASSWORD")
+                VM.sendOTPForget(from: params)              case .cellular:
+                let params = SendOTPDto(email: txtEmail.text, type: "FORGET_PASSWORD")
+                VM.sendOTPForget(from: params)              case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
         }
        
         
@@ -76,9 +84,11 @@ extension ForgetPasswordViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.changeScreen(modelType: ForgetPassword2ViewController.self,id: "ForgetPassword2ViewController")
                 }
             case .error(let error):

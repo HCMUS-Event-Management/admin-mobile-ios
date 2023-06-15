@@ -96,7 +96,16 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
 
         if let image = info[.originalImage] as? UIImage {
             let imageData:Data = image.pngData()!
-            VM.uploadAvatar(imageData: imageData)
+            switch try! Reachability().connection {
+              case .wifi:
+                VM.uploadAvatar(imageData: imageData)
+              case .cellular:
+                VM.uploadAvatar(imageData: imageData)
+              case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
         } else{
            print("Something went wrong")
         }

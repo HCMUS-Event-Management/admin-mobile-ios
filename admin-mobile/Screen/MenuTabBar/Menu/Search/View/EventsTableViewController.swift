@@ -8,17 +8,19 @@
 
 import UIKit
 import Kingfisher
+import Reachability
 
 class EventsTableViewController: UITableViewController {
     var callback : (() -> Void)?
     var VM = SearchViewModel()
-
+    var hiddenHeaderSections: [Int: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
     }
     
     
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Tìm \(VM.apps.count) kết quả"
     }
@@ -32,19 +34,18 @@ class EventsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         if VM.apps.count == 0 {
-            
         } else {
             Contanst.userdefault.set(VM.apps[indexPath.row].id, forKey: "eventIdDetail")
             callback?()
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if VM.apps.count == 0 {
             let cell: EmptyTableViewCell =
-            tableView.dequeueReusableCell(forIndexPath: indexPath)
+                tableView.dequeueReusableCell(forIndexPath: indexPath)
             return cell
         } else {
             let cell: EventTableViewCell =
@@ -73,7 +74,16 @@ class EventsTableViewController: UITableViewController {
     
 
     func search(term: String) {
-        VM.search(term: term)
+        switch try! Reachability().connection {
+          case .wifi:
+            VM.search(term: term)
+          case .cellular:
+            VM.search(term: term)
+          case .none:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+        }
     }
 }
 
@@ -103,7 +113,7 @@ extension EventsTableViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:

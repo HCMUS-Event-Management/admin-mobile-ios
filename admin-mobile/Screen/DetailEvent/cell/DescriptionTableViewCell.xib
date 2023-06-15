@@ -24,7 +24,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N2d-e0-IH4">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2d-e0-IH4">
                         <rect key="frame" x="25" y="44.5" width="278" height="54.5"/>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="textColor" systemColor="labelColor"/>

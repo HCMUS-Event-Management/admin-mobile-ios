@@ -1466,7 +1466,7 @@
 				DEVELOPMENT_TEAM = JGC4QV4YMX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "admin-mobile/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need to access your camera for scanning QR Codes";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Hãy cho phép app dùng camera sau để quét ?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1497,7 +1497,7 @@
 				DEVELOPMENT_TEAM = JGC4QV4YMX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "admin-mobile/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need to access your camera for scanning QR Codes";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Hãy cho phép app dùng camera sau để quét ?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class LoginFirstScreenViewController: UIViewController {
 
     @IBOutlet weak var btnLoginGGR: UIButton!
@@ -109,7 +109,16 @@ class LoginFirstScreenViewController: UIViewController {
     }
     
     @objc func Login() {
-        VM.handelLogin()
+        switch try! Reachability().connection {
+          case .wifi:
+            VM.handelLogin()
+          case .cellular:
+            VM.handelLogin()
+          case .none:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+        }
     }
 }
 

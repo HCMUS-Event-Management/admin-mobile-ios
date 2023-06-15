@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Reachability
 
 class ScanViewModel {
 
@@ -30,6 +30,19 @@ class ScanViewModel {
                 }
             }
         })
+    }
+    
+    func checkVadilateTicket(from info: VadilateTicketDto) {
+        switch try! Reachability().connection {
+          case .wifi:
+            vadilateTicket(from: info)
+          case .cellular:
+            vadilateTicket(from: info)
+          case .none:
+            self.eventHandler?(.error("Mất kết nối mạng"))
+          case .unavailable:
+            self.eventHandler?(.error("Mất kết nối mạng"))
+        }
     }
 
 

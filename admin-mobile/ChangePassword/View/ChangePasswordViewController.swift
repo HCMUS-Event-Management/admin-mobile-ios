@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ChangePasswordViewController: UIViewController {
     var dataLabel = ["Mật khẩu hiện tại:","Mật khẩu mới:","Xác nhận mật khẩu mới:"]
     var VM = ChangePasswordViewModel()
@@ -27,7 +27,7 @@ class ChangePasswordViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Change Password"
+        title.text = "Đổi mật khẩu"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -80,7 +80,7 @@ extension ChangePasswordViewController: EditProfileButtonTableViewCellDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func callApi() {
+    func changePass() {
         let cellOldPassword = self.tb.cellForRow(at: [0,0]) as? ProfileDetailTableViewCell
         let cellNewPassword = self.tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
         let cellConfirmPassword = self.tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
@@ -96,9 +96,24 @@ extension ChangePasswordViewController: EditProfileButtonTableViewCellDelegate {
             self.showToast(message: "Mật khẩu mới không được trùng với mật khẩu cũ", font: .systemFont(ofSize: 12))
         }
         
+    }
+    
+    func callApi() {
+        
+        
+        
         
       
-        
+        switch try! Reachability().connection {
+          case .wifi:
+            changePass()
+          case .cellular:
+            changePass()
+          case .none:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+        }
         
         
 
@@ -134,7 +149,10 @@ extension ChangePasswordViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 print("Data loaded...")
             case .error(let error):
