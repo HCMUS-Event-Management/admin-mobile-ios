@@ -86,6 +86,10 @@
 		A46147CB29EA80D600A90A0E /* ReponsePermissionEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147C829EA80D600A90A0E /* ReponsePermissionEvents.swift */; };
 		A46147CC29EA80D600A90A0E /* DataReponsePermissionEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147C929EA80D600A90A0E /* DataReponsePermissionEvents.swift */; };
 		A46147CE29EA835000A90A0E /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147CD29EA835000A90A0E /* Roles.swift */; };
+		A49EDCEB2A3ACC2400A8953B /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCEA2A3ACC2400A8953B /* EventsViewModel.swift */; };
+		A49EDCED2A3ACCE400A8953B /* ReponseGetAllCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCEC2A3ACCE400A8953B /* ReponseGetAllCategory.swift */; };
+		A49EDCF12A3ACD4200A8953B /* NoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCEF2A3ACD4200A8953B /* NoItemCollectionViewCell.swift */; };
+		A49EDCF22A3ACD4200A8953B /* NoItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49EDCF02A3ACD4200A8953B /* NoItemCollectionViewCell.xib */; };
 		A4C37AF229EBCC4700322D9F /* ScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C37AF129EBCC4700322D9F /* ScanViewModel.swift */; };
 		A4C37AF529EBCCB200322D9F /* VadilateTicketDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C37AF429EBCCB200322D9F /* VadilateTicketDto.swift */; };
 		A4C37AF829EBCE5200322D9F /* ReponseValidateTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C37AF629EBCE5200322D9F /* ReponseValidateTicket.swift */; };
@@ -120,7 +124,7 @@
 		A4E1573C29E7E1C200853BD2 /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E156F929E7E1C100853BD2 /* EditProfileTableViewCell.swift */; };
 		A4E1573D29E7E1C200853BD2 /* EditProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E156FA29E7E1C100853BD2 /* EditProfileTableViewCell.xib */; };
 		A4E1573E29E7E1C200853BD2 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E156FB29E7E1C100853BD2 /* PaymentMethodViewController.swift */; };
-		A4E1574329E7E1C200853BD2 /* FavoriteEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E1570129E7E1C100853BD2 /* FavoriteEventsViewController.swift */; };
+		A4E1574329E7E1C200853BD2 /* ManagementEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E1570129E7E1C100853BD2 /* ManagementEventsViewController.swift */; };
 		A4E1574429E7E1C200853BD2 /* ProfileDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E1570329E7E1C100853BD2 /* ProfileDetailTableViewCell.xib */; };
 		A4E1574529E7E1C200853BD2 /* ProfileDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E1570429E7E1C100853BD2 /* ProfileDetailTableViewCell.swift */; };
 		A4E1574629E7E1C200853BD2 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E1570529E7E1C100853BD2 /* InfoTableViewCell.xib */; };
@@ -244,6 +248,10 @@
 		A46147C829EA80D600A90A0E /* ReponsePermissionEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponsePermissionEvents.swift; sourceTree = "<group>"; };
 		A46147C929EA80D600A90A0E /* DataReponsePermissionEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataReponsePermissionEvents.swift; sourceTree = "<group>"; };
 		A46147CD29EA835000A90A0E /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		A49EDCEA2A3ACC2400A8953B /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		A49EDCEC2A3ACCE400A8953B /* ReponseGetAllCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseGetAllCategory.swift; sourceTree = "<group>"; };
+		A49EDCEF2A3ACD4200A8953B /* NoItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		A49EDCF02A3ACD4200A8953B /* NoItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		A4C37AF129EBCC4700322D9F /* ScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewModel.swift; sourceTree = "<group>"; };
 		A4C37AF429EBCCB200322D9F /* VadilateTicketDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VadilateTicketDto.swift; sourceTree = "<group>"; };
 		A4C37AF629EBCE5200322D9F /* ReponseValidateTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponseValidateTicket.swift; sourceTree = "<group>"; };
@@ -278,7 +286,7 @@
 		A4E156F929E7E1C100853BD2 /* EditProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewCell.swift; sourceTree = "<group>"; };
 		A4E156FA29E7E1C100853BD2 /* EditProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileTableViewCell.xib; sourceTree = "<group>"; };
 		A4E156FB29E7E1C100853BD2 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
-		A4E1570129E7E1C100853BD2 /* FavoriteEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteEventsViewController.swift; sourceTree = "<group>"; };
+		A4E1570129E7E1C100853BD2 /* ManagementEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagementEventsViewController.swift; sourceTree = "<group>"; };
 		A4E1570329E7E1C100853BD2 /* ProfileDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileDetailTableViewCell.xib; sourceTree = "<group>"; };
 		A4E1570429E7E1C100853BD2 /* ProfileDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailTableViewCell.swift; sourceTree = "<group>"; };
 		A4E1570529E7E1C100853BD2 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -598,6 +606,7 @@
 		A45EBBA229D40B5300120D06 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A49EDCEE2A3ACD4200A8953B /* NoItem */,
 				A4F8DFCD2A2987540027E27E /* ForgetPassword */,
 				A4F8DFC32A29859C0027E27E /* ChangePassword */,
 				A42C5D762A264A25008B23A6 /* DetailEvent */,
@@ -675,6 +684,15 @@
 				A43052232A277CF100DB9A92 /* AlertView.xib */,
 			);
 			path = CustomAlert;
+			sourceTree = "<group>";
+		};
+		A49EDCEE2A3ACD4200A8953B /* NoItem */ = {
+			isa = PBXGroup;
+			children = (
+				A49EDCEF2A3ACD4200A8953B /* NoItemCollectionViewCell.swift */,
+				A49EDCF02A3ACD4200A8953B /* NoItemCollectionViewCell.xib */,
+			);
+			path = NoItem;
 			sourceTree = "<group>";
 		};
 		A4C37AF029EBCC2100322D9F /* VM */ = {
@@ -769,6 +787,7 @@
 			isa = PBXGroup;
 			children = (
 				A4E156E529E7E1C100853BD2 /* ProfileViewModel.swift */,
+				A49EDCEA2A3ACC2400A8953B /* EventsViewModel.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -783,6 +802,7 @@
 				A4E156EB29E7E1C100853BD2 /* ReponseCommon.swift */,
 				A4E156EC29E7E1C100853BD2 /* ResponseMyProfile.swift */,
 				A4F8DFBF2A2874100027E27E /* UploadAvatarDto.swift */,
+				A49EDCEC2A3ACCE400A8953B /* ReponseGetAllCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -815,7 +835,7 @@
 				A42C5DBA2A26590A008B23A6 /* cellFavorite */,
 				A4E156F629E7E1C100853BD2 /* cellEditProfile */,
 				A4E156FB29E7E1C100853BD2 /* PaymentMethodViewController.swift */,
-				A4E1570129E7E1C100853BD2 /* FavoriteEventsViewController.swift */,
+				A4E1570129E7E1C100853BD2 /* ManagementEventsViewController.swift */,
 				A4E1570229E7E1C100853BD2 /* cellProfileDetail */,
 			);
 			path = MenuController;
@@ -1048,6 +1068,7 @@
 				A42C5DB02A264C97008B23A6 /* InfoEventTableViewCell.xib in Resources */,
 				A42C5DAD2A264C97008B23A6 /* InfoPaymentTableViewCell.xib in Resources */,
 				A42C5DBF2A26590A008B23A6 /* EventCollectionViewCell.xib in Resources */,
+				A49EDCF22A3ACD4200A8953B /* NoItemCollectionViewCell.xib in Resources */,
 				A42C5DB72A265231008B23A6 /* terms.json in Resources */,
 				A42C5D582A26428A008B23A6 /* EmptyTableViewCell.xib in Resources */,
 				A45EBB7729D3E54B00120D06 /* Main.storyboard in Resources */,
@@ -1218,7 +1239,7 @@
 				A42C5DAF2A264C97008B23A6 /* InfoPaymentTableViewCell.swift in Sources */,
 				A4E156BC29E7DE9300853BD2 /* APIManager.swift in Sources */,
 				A42C5D6D2A264988008B23A6 /* AutoLayoutHelper.swift in Sources */,
-				A4E1574329E7E1C200853BD2 /* FavoriteEventsViewController.swift in Sources */,
+				A4E1574329E7E1C200853BD2 /* ManagementEventsViewController.swift in Sources */,
 				A42C5DB42A264E9A008B23A6 /* User.swift in Sources */,
 				A4E1573829E7E1C200853BD2 /* InfoTableViewCell.swift in Sources */,
 				A4E1573529E7E1C200853BD2 /* EditProfileViewController.swift in Sources */,
@@ -1228,6 +1249,7 @@
 				A4E156D329E7E0A000853BD2 /* FeatureCodeDtos.swift in Sources */,
 				A42C5D662A2645CB008B23A6 /* PaymentEndPoint.swift in Sources */,
 				A4C37AF229EBCC4700322D9F /* ScanViewModel.swift in Sources */,
+				A49EDCF12A3ACD4200A8953B /* NoItemCollectionViewCell.swift in Sources */,
 				A42C5D862A264A25008B23A6 /* DetailEventViewController.swift in Sources */,
 				A42C5D4D2A26428A008B23A6 /* SearchType.swift in Sources */,
 				A4F8DFD62A2987540027E27E /* SendOTPDto.swift in Sources */,
@@ -1242,6 +1264,7 @@
 				A4E1574729E7E1C200853BD2 /* ScanQRViewController.swift in Sources */,
 				A45EBB7029D3E54B00120D06 /* AppDelegate.swift in Sources */,
 				A4F8DFC02A2874100027E27E /* UploadAvatarDto.swift in Sources */,
+				A49EDCEB2A3ACC2400A8953B /* EventsViewModel.swift in Sources */,
 				A42C5D6F2A264988008B23A6 /* Array+SafeIndex.swift in Sources */,
 				A4E1572D29E7E1C200853BD2 /* ProfileViewModel.swift in Sources */,
 				A42C5D672A2645CB008B23A6 /* Designable.swift in Sources */,
@@ -1253,6 +1276,7 @@
 				A42C5DC22A26590A008B23A6 /* EventCollectionViewCell.swift in Sources */,
 				A4C37AF929EBCE5200322D9F /* Data.swift in Sources */,
 				A42C5D8C2A264A25008B23A6 /* InfoTicketEventDetailTableViewCell.swift in Sources */,
+				A49EDCED2A3ACCE400A8953B /* ReponseGetAllCategory.swift in Sources */,
 				A4E156BB29E7DE9300853BD2 /* RealmHelper.swift in Sources */,
 				A42C5D682A2645CB008B23A6 /* EndPointType.swift in Sources */,
 				A42C5D592A26428A008B23A6 /* ResultsContainerViewController.swift in Sources */,

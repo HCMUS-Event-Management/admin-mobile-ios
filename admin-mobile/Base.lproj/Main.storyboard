@@ -548,10 +548,10 @@
             </objects>
             <point key="canvasLocation" x="392.75362318840581" y="3626.7857142857142"/>
         </scene>
-        <!--Favorite Events View Controller-->
+        <!--Management Events View Controller-->
         <scene sceneID="EK5-N3-qE0">
             <objects>
-                <viewController storyboardIdentifier="FavoriteEventsViewController" id="52D-n8-u62" customClass="FavoriteEventsViewController" customModule="admin_mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManagementEventsViewController" id="52D-n8-u62" customClass="ManagementEventsViewController" customModule="admin_mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S75-gj-aKr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -579,7 +579,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 favorite events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGY-Gc-b5u">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giáo dục" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGY-Gc-b5u">
                                         <rect key="frame" x="0.0" y="57" width="374" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
@@ -634,6 +634,7 @@
                     <connections>
                         <outlet property="clEvent" destination="N5a-FS-Iut" id="Dsk-cl-kFV"/>
                         <outlet property="clType" destination="JfA-ee-6dr" id="Ktx-Pj-rSO"/>
+                        <outlet property="countType" destination="QGY-Gc-b5u" id="6EX-dX-oug"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdH-Rz-B3m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -848,7 +849,7 @@
                     <tabBarItem key="tabBarItem" title="Search" image="SearchIcon" id="Ihg-rP-7dx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="KpE-yr-6lc">
-                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="104.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>

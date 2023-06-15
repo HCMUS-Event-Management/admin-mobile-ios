@@ -18,6 +18,8 @@ enum EntityEndPoint {
     case getAllCategory
     case listEventOfUser(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
     case validate
+    case listEventOfManagerUser(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
+
 
 }
 
@@ -49,7 +51,9 @@ extension EntityEndPoint: EndPointType {
             return APIManager.commonHeaders
         case .validate:
             return APIManager.bearTokenHeaders
-            
+        case .listEventOfManagerUser:
+            return APIManager.bearTokenHeaders
+
         }
     }
     
@@ -77,6 +81,8 @@ extension EntityEndPoint: EndPointType {
             return "api/v1/entity/event/get-list-event-user?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
         case .validate:
             return "api/v1/entity/ticket/validate"
+        case .listEventOfManagerUser(page: let page, perPage: let perPage, filterStatus: let filterStatus, sort: let sort, fullTextSearch: let fullTextSearch, type: let type):
+            return "api/v1/entity/event/get-my-created-list-event?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
         }
     }
     
@@ -110,6 +116,8 @@ extension EntityEndPoint: EndPointType {
             return .get
         case .validate:
             return .post
+        case .listEventOfManagerUser:
+            return .get
         }
     }
     
