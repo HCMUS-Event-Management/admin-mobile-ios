@@ -22,7 +22,6 @@ class LoginFirstScreenViewController: UIViewController {
         
     }
     @IBAction func setUsername(_ sender: UITextField) {
-       print(sender.text)
         VM.setUsername(username: sender.text ?? "")
     };
     @IBOutlet weak var txtPassword: UITextField!
@@ -35,8 +34,7 @@ class LoginFirstScreenViewController: UIViewController {
             Contanst.userdefault.set(txtUsername.text ?? "" , forKey: "userMail")
             Contanst.userdefault.set(txtPassword.text ?? "", forKey: "userPassword")
                     
-                print("Mail & Password Saved Successfully")
-                    
+
                 }else{
                     
                     Contanst.userdefault.set("2", forKey: "rememberMe")

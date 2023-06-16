@@ -30,9 +30,7 @@ class ScanQRViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // start video capture
-
-        DispatchQueue.global(qos: .background).async {
-            // Perform the startRunning operation on a background thread
+        if let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
             self.captureSession.startRunning()
         }
 
@@ -43,7 +41,7 @@ class ScanQRViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Quét ticket QR"
+        title.text = "Soát vé QR"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -69,7 +67,7 @@ extension ScanQRViewController: AVCaptureMetadataOutputObjectsDelegate {
 //                let infoTicket = decodeRSA(from: metadataObj.stringValue!)
                 let infoTicket = metadataObj.stringValue!
                 let infoTicketArr = infoTicket.components(separatedBy: "-")
-                if infoTicket.count == 3 {
+                if infoTicketArr.count == 3 {
                     let info = VadilateTicketDto(eventId: Int(infoTicketArr[0]), ownerId: Int(infoTicketArr[2]), ticketCode: infoTicketArr[1])
                     VM.checkVadilateTicket(from: info)
                     self.captureSession.stopRunning()
@@ -130,7 +128,7 @@ extension ScanQRViewController {
             qrCodeFrameView = UIView()
             
             if let qrCodeFrameView = qrCodeFrameView {
-                qrCodeFrameView.layer.borderColor = UIColor.yellow.cgColor
+                qrCodeFrameView.layer.borderColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
                 qrCodeFrameView.layer.borderWidth = 2
                 view.addSubview(qrCodeFrameView)
                 view.bringSubviewToFront(qrCodeFrameView)
