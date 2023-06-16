@@ -30,6 +30,7 @@ class ScanQRViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // start video capture
+
         DispatchQueue.global(qos: .background).async {
             // Perform the startRunning operation on a background thread
             self.captureSession.startRunning()
@@ -68,10 +69,16 @@ extension ScanQRViewController: AVCaptureMetadataOutputObjectsDelegate {
 //                let infoTicket = decodeRSA(from: metadataObj.stringValue!)
                 let infoTicket = metadataObj.stringValue!
                 let infoTicketArr = infoTicket.components(separatedBy: "-")
+                if infoTicket.count == 3 {
+                    let info = VadilateTicketDto(eventId: Int(infoTicketArr[0]), ownerId: Int(infoTicketArr[2]), ticketCode: infoTicketArr[1])
+                    VM.checkVadilateTicket(from: info)
+                    self.captureSession.stopRunning()
+                } else {
+                    alert.showAlert(title: "Failure", message: "Đây không phải QR vé", alertType: .failure)
+                    qrCodeFrameView?.frame = CGRect.zero
+                    self.captureSession.stopRunning()
+                }
                 
-                let info = VadilateTicketDto(eventId: Int(infoTicketArr[0]), ownerId: Int(infoTicketArr[2]), ticketCode: infoTicketArr[1])
-                VM.checkVadilateTicket(from: info)
-                self.captureSession.stopRunning()
 
             }
         }
@@ -84,6 +91,7 @@ extension ScanQRViewController {
         // lay camera sau
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
             print("Failed to get the camera device")
+            
             return
         }
         
