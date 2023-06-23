@@ -15,9 +15,11 @@ class ManagementEventsViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var countType: UILabel!
     private var VM = EventsViewModel()
 
+    var typeEvents = ["Sự kiện đang chờ duyệt","Sự kiện đã được duyệt","Sự kiện đã huỷ","Sự kiện bị từ chối","Sự kiện đã thu hồi","Sự kiện cần chỉnh sửa"]
+    var typeEventsSearch = ["PENDING_APPROVAL","APPROVED","REJECTED","CANCELED","RECALLED","SENT_BACK"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        VM.fetchCategoryAll()
+//        VM.fetchCategoryAll()
 
         configuration()
     }
@@ -33,7 +35,7 @@ class ManagementEventsViewController: UIViewController, UICollectionViewDelegate
         
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Sự kiện quản lý"
+        title.text = "Quản lý sự kiện"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -57,7 +59,8 @@ class ManagementEventsViewController: UIViewController, UICollectionViewDelegate
 extension ManagementEventsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.clType {
-            return VM.catagorys.count
+//            return VM.catagorys.count
+            return typeEvents.count
         } else if collectionView == self.clEvent {
             if VM.events.count == 0 {
                 return 1
@@ -73,9 +76,11 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TypeCollectionViewCell", for: indexPath) as? TypeCollectionViewCell {
                 cell.layer.cornerRadius = 25
                 cell.layer.masksToBounds = true
-                cell.category.text = VM.catagorys[indexPath.row].name
+                cell.category.text = typeEvents[indexPath.row]
                 cell.callback = {
-                    self.countType.text = "\(self.VM.catagorys[indexPath.row].name)"
+//                    self.countType.text = "\(self.VM.catagorys[indexPath.row].name)"
+                    self.countType.text = "\(self.typeEvents[indexPath.row])"
+
                 }
                 return cell
             }
@@ -140,7 +145,7 @@ extension ManagementEventsViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 
         } else if collectionView == self.clType {
-            return CGSize(width: collectionView.frame.width/4, height: 50)
+            return CGSize(width: collectionView.frame.width/2, height: 50)
         }
         return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 
@@ -148,7 +153,7 @@ extension ManagementEventsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.clType {
-            VM.fetchListEventOfManagerUser(fullTextSearch: VM.catagorys[indexPath.row].label)
+            VM.fetchListEventOfManagerUser(fullTextSearch: typeEventsSearch[indexPath.row])
         } else if collectionView == self.clEvent {
             changeDetailEvent(indexPath: indexPath)
         }
@@ -173,6 +178,11 @@ extension ManagementEventsViewController {
         self.clType.contentInsetAdjustmentBehavior = .never;
     
         
+        let ind =  IndexPath(item: 1, section: 0)
+        self.clType.selectItem(at:ind, animated: false, scrollPosition: [])
+        self.collectionView((self.clType)!, didSelectItemAt:ind)
+        self.clEvent.reloadData()
+        
         initViewModel()
         observeEvent()
     }
@@ -195,10 +205,6 @@ extension ManagementEventsViewController {
             case .categoryLoaded:
                 DispatchQueue.main.async {
                     self?.clType.reloadData()
-                    let ind =  IndexPath(item: 0, section: 0)
-                    self?.clType.selectItem(at:ind, animated: false, scrollPosition: [])
-                    self?.collectionView((self?.clType)!, didSelectItemAt:ind)
-                    self?.clEvent.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:

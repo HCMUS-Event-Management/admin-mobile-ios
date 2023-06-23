@@ -15,7 +15,7 @@ class SearchViewModel {
     /// - Parameter term: Term to search.
     func search(term: String) {
         self.eventHandler?(.loading)
-        let encodedTerm = term //.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let encodedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         APIManager.shared.request(modelType: ReponseSearch.self, type: EntityEndPoint.search(query: encodedTerm  ?? String()), params: nil, completion: { result in
             self.eventHandler?(.stopLoading)
 

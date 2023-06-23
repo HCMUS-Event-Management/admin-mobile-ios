@@ -59,7 +59,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kLk-5b-fXv">
-                                <rect key="frame" x="52" y="540" width="310.5" height="303"/>
+                                <rect key="frame" x="52" y="540" width="310.5" height="197"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wLB-cH-CzD">
                                         <rect key="frame" x="0.0" y="0.0" width="310.5" height="38"/>
@@ -73,7 +73,7 @@
                                             <action selector="setUsername:" destination="0LR-m1-YNg" eventType="editingChanged" id="N16-54-aXr"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEh-w9-geB">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEh-w9-geB" customClass="PasswordTextField" customModule="admin_mobile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="53" width="310.5" height="38"/>
                                         <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86666666670000003" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -135,59 +135,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ElH-dt-9ce">
-                                        <rect key="frame" x="0.0" y="212" width="310.5" height="38"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehW-UA-U7P">
-                                                <rect key="frame" x="3" y="18" width="77" height="2"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="4iG-FI-pUF"/>
-                                                </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoặc đăng nhập với" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csI-k2-fcN">
-                                                <rect key="frame" x="83" y="10" width="144" height="18"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5Y-CB-UYh">
-                                                <rect key="frame" x="230" y="18" width="77.5" height="2"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="V5V-1S-o9f"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="ehW-UA-U7P" firstAttribute="centerY" secondItem="ElH-dt-9ce" secondAttribute="centerY" id="2Kv-6n-JVE"/>
-                                            <constraint firstItem="ehW-UA-U7P" firstAttribute="leading" secondItem="ElH-dt-9ce" secondAttribute="leading" constant="3" id="HTm-6O-BdV"/>
-                                            <constraint firstItem="N5Y-CB-UYh" firstAttribute="leading" secondItem="csI-k2-fcN" secondAttribute="trailing" constant="3" id="NDo-lY-crI"/>
-                                            <constraint firstItem="csI-k2-fcN" firstAttribute="leading" secondItem="ehW-UA-U7P" secondAttribute="trailing" constant="3" id="RLm-i1-Ned"/>
-                                            <constraint firstItem="csI-k2-fcN" firstAttribute="centerY" secondItem="ElH-dt-9ce" secondAttribute="centerY" id="Utv-hB-JaN"/>
-                                            <constraint firstItem="N5Y-CB-UYh" firstAttribute="centerY" secondItem="ElH-dt-9ce" secondAttribute="centerY" id="o2x-eJ-Gcw"/>
-                                            <constraint firstItem="csI-k2-fcN" firstAttribute="centerX" secondItem="ElH-dt-9ce" secondAttribute="centerX" id="rCL-mE-0eQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="N5Y-CB-UYh" secondAttribute="trailing" constant="3" id="x1L-bZ-kPY"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="-100" translatesAutoresizingMaskIntoConstraints="NO" id="irP-KX-DDs">
-                                        <rect key="frame" x="0.0" y="265" width="310.5" height="38"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRd-mp-3jc">
-                                                <rect key="frame" x="0.0" y="0.0" width="205" height="38"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="icon fb vuong"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="icon fb vuong"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIt-Vg-Mi6">
-                                                <rect key="frame" x="105" y="0.0" width="205.5" height="38"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="icon gg vuong"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="icon gg vuong"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="gEh-w9-geB" firstAttribute="height" secondItem="wLB-cH-CzD" secondAttribute="height" id="vbo-ij-RbB"/>
@@ -210,9 +157,7 @@
                     <connections>
                         <outlet property="btnCheckBoxRemember" destination="iwh-iD-i45" id="fYk-Xa-Kqg"/>
                         <outlet property="btnLogin" destination="u9B-Tg-NH8" id="V2Y-qt-Xzy"/>
-                        <outlet property="btnLoginGG" destination="gRd-mp-3jc" id="5gL-Rf-RYg"/>
-                        <outlet property="btnLoginGGR" destination="sIt-Vg-Mi6" id="2gi-RA-TFT"/>
-                        <outlet property="txtPassword" destination="gEh-w9-geB" id="Xes-hg-rYG"/>
+                        <outlet property="txtPassword" destination="gEh-w9-geB" id="f2h-N8-sbG"/>
                         <outlet property="txtUsername" destination="wLB-cH-CzD" id="R9l-2w-iiI"/>
                     </connections>
                 </viewController>
@@ -562,7 +507,7 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JfA-ee-6dr">
                                         <rect key="frame" x="0.0" y="10" width="374" height="27"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="SYC-k4-YIN">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="SYC-k4-YIN">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -579,7 +524,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giáo dục" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGY-Gc-b5u">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sự kiện đã được duyệt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGY-Gc-b5u">
                                         <rect key="frame" x="0.0" y="57" width="374" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
@@ -761,11 +706,11 @@
             </objects>
             <point key="canvasLocation" x="4589.8550724637689" y="3540.4017857142858"/>
         </scene>
-        <!--ScanQR-->
+        <!--Scan-->
         <scene sceneID="JGv-9g-1Fe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DxJ-op-uRF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ScanQR" image="ScanQRIcon" id="IWk-mF-wha"/>
+                    <tabBarItem key="tabBarItem" title="Scan" image="ScanQRIcon" id="IWk-mF-wha"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0wR-0X-QU8">
                         <rect key="frame" x="0.0" y="48" width="414" height="44"/>
@@ -1246,7 +1191,7 @@ PASSWORD</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zmu-Sl-7gX">
                                 <rect key="frame" x="52" y="496" width="310.5" height="144"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu mới" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Doj-IO-aUS">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu mới" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Doj-IO-aUS" customClass="PasswordTextField" customModule="admin_mobile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="310.5" height="38"/>
                                         <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86666666670000003" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -1255,7 +1200,7 @@ PASSWORD</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Xác nhận mật khẩu mới" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Kt-dH-ml6">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Xác nhận mật khẩu mới" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Kt-dH-ml6" customClass="PasswordTextField" customModule="admin_mobile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="53" width="310.5" height="38"/>
                                         <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86666666670000003" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -1306,8 +1251,8 @@ PASSWORD</string>
                     <connections>
                         <outlet property="btnBack" destination="3Gd-rU-jP2" id="GhM-bL-zcp"/>
                         <outlet property="btnDone" destination="lo1-kh-M9M" id="OZj-1R-DTL"/>
-                        <outlet property="txtConfirmPass" destination="1Kt-dH-ml6" id="4Ol-uA-H7N"/>
-                        <outlet property="txtNewPass" destination="Doj-IO-aUS" id="9nH-PS-oH0"/>
+                        <outlet property="txtConfirmPass" destination="1Kt-dH-ml6" id="tzT-6C-Xmw"/>
+                        <outlet property="txtNewPass" destination="Doj-IO-aUS" id="br7-uy-EwJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SH8-Fm-Ucx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1423,8 +1368,6 @@ PASSWORD</string>
         <image name="VectorIcon" width="23" height="29"/>
         <image name="background header" width="1500" height="2100"/>
         <image name="backgroundGetstarted" width="428" height="926"/>
-        <image name="icon fb vuong" width="53" height="53"/>
-        <image name="icon gg vuong" width="53" height="53"/>
         <image name="search_term_icon" width="14" height="14"/>
         <image name="uncheckbox" width="15" height="15"/>
         <namedColor name="AccentColor">

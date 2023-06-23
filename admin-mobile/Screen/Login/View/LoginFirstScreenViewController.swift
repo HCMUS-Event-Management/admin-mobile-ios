@@ -24,7 +24,7 @@ class LoginFirstScreenViewController: UIViewController {
     @IBAction func setUsername(_ sender: UITextField) {
         VM.setUsername(username: sender.text ?? "")
     };
-    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtPassword: PasswordTextField!
     @IBOutlet weak var txtUsername: UITextField!
     
     @IBAction func saveRemember(_ sender: Any) {

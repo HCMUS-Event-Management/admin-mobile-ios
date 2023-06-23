@@ -12,8 +12,8 @@ class ForgetPassword3ViewController: UIViewController {
 
     @IBOutlet weak var btnDone: UIButton!
     @IBOutlet weak var btnBack: UIButton!
-    @IBOutlet weak var txtConfirmPass: UITextField!
-    @IBOutlet weak var txtNewPass: UITextField!
+    @IBOutlet weak var txtConfirmPass: PasswordTextField!
+    @IBOutlet weak var txtNewPass: PasswordTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         btnDone.addTarget(self, action: #selector(postAPI), for: .touchUpInside)

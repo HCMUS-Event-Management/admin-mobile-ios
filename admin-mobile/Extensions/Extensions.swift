@@ -156,3 +156,31 @@ extension DateFormatter {
         return string(from: date)
     }
 }
+
+extension String {
+    func extractTextFromHTML() -> String {
+        let cleanr = try! NSRegularExpression(pattern: "<.*?>", options: .caseInsensitive)
+        let range = NSMakeRange(0, self.count)
+        let modifiedString = cleanr.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: "")
+        return modifiedString.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
+extension String {
+    func decodeHTML() -> String? {
+        guard let data = self.data(using: .utf8) else {
+            return nil
+        }
+        
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ]
+        
+        if let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
+            return attributedString.string
+        } else {
+            return nil
+        }
+    }
+}

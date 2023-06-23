@@ -212,7 +212,7 @@ extension EditProfileViewController: UITableViewDataSource {
         } else if(indexPath.row == dataLabel.count + 1){
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileButtonTableViewCell", for: indexPath) as? EditProfileButtonTableViewCell {
                 cell.delegate = self
-                cell.btnSelect.setTitle("Update", for: .normal)
+                cell.btnSelect.setTitle("Cập nhật", for: .normal)
 
                 return cell
             }

@@ -11,7 +11,7 @@ class EventsViewModel {
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     var catagorys = [CategoryObject]()
     var events = [DataEventObject]()
-    
+    var profileViewModel = ProfileViewModel()
     
     func fetchCategoryAll() {
         switch try! Reachability().connection {
@@ -148,13 +148,18 @@ extension EventsViewModel {
     
     func getListEventOfManagerUserFromDB(fullTextSearch: String) {
         self.events = [DataEventObject]()
+        profileViewModel.getUserDetailFromLocalDB()
+
         let container = try! Container()
         try! container.write{
             transaction in
             let temp = transaction.get(DataEventObject.self)
-            for i in temp.filter("category.label == '\(fullTextSearch)'") {
-                self.events.append(i)
+            if let fullName = profileViewModel.userInfoDetail?.fullName {
+                for i in temp.filter("status == '\(fullTextSearch)' AND organizationName == '\(fullName)'") {
+                    self.events.append(i)
+                }
             }
+            
         }
         self.eventHandler?(.dataLoaded)
     }
@@ -162,7 +167,7 @@ extension EventsViewModel {
     func getListEventOfManagerUserFromServer(fullTextSearch: String) {
         self.eventHandler?(.loading)
 
-        APIManager.shared.request(modelType: ReponseListEvent.self, type: EntityEndPoint.listEventOfManagerUser(page: 1, perPage: 10, filterStatus: "APPROVED", sort: "", fullTextSearch: fullTextSearch, type: ""), params: nil, completion: {
+        APIManager.shared.request(modelType: ReponseListEvent.self, type: EntityEndPoint.listEventOfManagerUser(page: 1, perPage: 10, filterStatus: fullTextSearch, sort: "", fullTextSearch: "", type: ""), params: nil, completion: {
             result in
             self.eventHandler?(.stopLoading)
 

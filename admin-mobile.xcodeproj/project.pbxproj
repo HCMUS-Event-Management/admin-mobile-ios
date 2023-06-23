@@ -73,6 +73,7 @@
 		A42C5DC22A26590A008B23A6 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C5DBE2A26590A008B23A6 /* EventCollectionViewCell.swift */; };
 		A43052252A277CF100DB9A92 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43052232A277CF100DB9A92 /* AlertView.xib */; };
 		A43052262A277CF100DB9A92 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43052242A277CF100DB9A92 /* AlertView.swift */; };
+		A43EA1172A45576500BDF0D7 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA1162A45576500BDF0D7 /* PasswordTextField.swift */; };
 		A45EBB7029D3E54B00120D06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB6F29D3E54B00120D06 /* AppDelegate.swift */; };
 		A45EBB7429D3E54B00120D06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB7329D3E54B00120D06 /* ViewController.swift */; };
 		A45EBB7729D3E54B00120D06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A45EBB7529D3E54B00120D06 /* Main.storyboard */; };
@@ -231,6 +232,7 @@
 		A42C5DBE2A26590A008B23A6 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		A43052232A277CF100DB9A92 /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		A43052242A277CF100DB9A92 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		A43EA1162A45576500BDF0D7 /* PasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		A45EBB6C29D3E54B00120D06 /* admin-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "admin-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45EBB6F29D3E54B00120D06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A45EBB7329D3E54B00120D06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -544,6 +546,14 @@
 			path = cellFavorite;
 			sourceTree = "<group>";
 		};
+		A43EA1152A45576500BDF0D7 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				A43EA1162A45576500BDF0D7 /* PasswordTextField.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		A45EBB6329D3E54B00120D06 = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +616,7 @@
 		A45EBBA229D40B5300120D06 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A43EA1152A45576500BDF0D7 /* Custom */,
 				A49EDCEE2A3ACD4200A8953B /* NoItem */,
 				A4F8DFCD2A2987540027E27E /* ForgetPassword */,
 				A4F8DFC32A29859C0027E27E /* ChangePassword */,
@@ -1241,6 +1252,7 @@
 				A42C5D6D2A264988008B23A6 /* AutoLayoutHelper.swift in Sources */,
 				A4E1574329E7E1C200853BD2 /* ManagementEventsViewController.swift in Sources */,
 				A42C5DB42A264E9A008B23A6 /* User.swift in Sources */,
+				A43EA1172A45576500BDF0D7 /* PasswordTextField.swift in Sources */,
 				A4E1573829E7E1C200853BD2 /* InfoTableViewCell.swift in Sources */,
 				A4E1573529E7E1C200853BD2 /* EditProfileViewController.swift in Sources */,
 				A42C5D4E2A26428A008B23A6 /* Term.swift in Sources */,
@@ -1415,10 +1427,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "A-HCMUSEvMana";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1469,9 +1482,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "A-HCMUSEvMana";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1490,6 +1504,8 @@
 				DEVELOPMENT_TEAM = JGC4QV4YMX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "admin-mobile/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=iphoneos*]" = HCMUSEvManaAdmin;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Hãy cho phép app dùng camera sau để quét ?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1521,6 +1537,7 @@
 				DEVELOPMENT_TEAM = JGC4QV4YMX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "admin-mobile/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = HCMUSEvManaAdmin;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Hãy cho phép app dùng camera sau để quét ?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

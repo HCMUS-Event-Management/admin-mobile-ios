@@ -97,7 +97,7 @@ extension DetailEventViewController: UITableViewDataSource {
         } else if indexPath.section == 2 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell
             {
-                cell.txtDescription.text = event.description1
+                cell.txtDescription.text = event.description1.decodeHTML()?.extractTextFromHTML()
                 return cell
             }
         } else if indexPath.section == 3 {
