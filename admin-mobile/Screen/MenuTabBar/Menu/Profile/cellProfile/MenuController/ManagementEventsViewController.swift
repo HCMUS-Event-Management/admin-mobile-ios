@@ -11,7 +11,9 @@ class ManagementEventsViewController: UIViewController, UICollectionViewDelegate
 
     @IBOutlet weak var clEvent: UICollectionView!
     @IBOutlet weak var clType: UICollectionView!
-    
+    let refreshControl = UIRefreshControl()
+    private var type = ""
+
     @IBOutlet weak var countType: UILabel!
     private var VM = EventsViewModel()
 
@@ -19,9 +21,9 @@ class ManagementEventsViewController: UIViewController, UICollectionViewDelegate
     var typeEventsSearch = ["PENDING_APPROVAL","APPROVED","REJECTED","CANCELED","RECALLED","SENT_BACK"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuration()
 //        VM.fetchCategoryAll()
 
-        configuration()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +80,7 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
                 cell.layer.masksToBounds = true
                 cell.category.text = typeEvents[indexPath.row]
                 cell.callback = {
-//                    self.countType.text = "\(self.VM.catagorys[indexPath.row].name)"
+                    self.type = self.typeEventsSearch[indexPath.row]
                     self.countType.text = "\(self.typeEvents[indexPath.row])"
 
                 }
@@ -89,7 +91,7 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
             
             if self.VM.events.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
-                    cell.tilte.text = "Không có sự kiện nào"
+                    cell.tilte.text = "Không có sự kiện"
                    return cell
                 }
             } else {
@@ -98,7 +100,7 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     
                     cell.eventName.text = event.title
-                    cell.owner.text = "Bởi \(event.user!.fullName)"
+                    cell.owner.text = "Tạo bởi \(event.user!.fullName)"
                     if event.type == "PAID" {
                         cell.paidName.text = "Có Phí"
                     } else {
@@ -165,7 +167,9 @@ extension ManagementEventsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ManagementEventsViewController {
-
+    @objc private func refreshData(_ sender: Any) {
+        self.VM.fetchListEventOfManagerUser(fullTextSearch: type)
+    }
     func configuration() {
         self.clEvent.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
         self.clType.register(UINib(nibName: "TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TypeCollectionViewCell")
@@ -180,10 +184,15 @@ extension ManagementEventsViewController {
         self.clType.contentInsetAdjustmentBehavior = .never;
     
         
+        
         let ind =  IndexPath(item: 1, section: 0)
         self.clType.selectItem(at:ind, animated: false, scrollPosition: [])
         self.collectionView((self.clType)!, didSelectItemAt:ind)
         self.clEvent.reloadData()
+        
+        
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.clEvent.refreshControl = refreshControl
         
         initViewModel()
         observeEvent()
@@ -213,6 +222,7 @@ extension ManagementEventsViewController {
                 DispatchQueue.main.async {
 //                    self?.clType.reloadData()
                     self?.clEvent.reloadData()
+                    self?.refreshControl.endRefreshing()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):

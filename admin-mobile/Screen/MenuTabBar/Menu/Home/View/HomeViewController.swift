@@ -10,7 +10,8 @@ import RealmSwift
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var cl: UICollectionView!
-    
+    let refreshControl = UIRefreshControl()
+
     private var VM = HomeViewModel()
     private var isCollectionViewInteractionEnabled = true
     private var clickProcessing = false
@@ -18,8 +19,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-
         VM.getListEventForHome()
+
         print(Realm.Configuration.defaultConfiguration.fileURL)
         // Do any additional setup after loading the view.
 
@@ -78,7 +79,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if indexPath.section == 0 {
             if self.VM.goingOnEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
-                    cell.tilte.text = "Không có sự kiện nào"
+                    cell.tilte.text = "Không có sự kiện"
                    return cell
                 }
             } else {
@@ -128,7 +129,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else if indexPath.section == 1{
             if self.VM.isCommingEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
-                    cell.tilte.text = "Không có sự kiện nào"
+                    cell.tilte.text = "Không có sự kiện"
                    return cell
                 }
             } else {
@@ -205,12 +206,21 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if VM.isCommingEvent.count == 0 {
-            return CGSize(width: collectionView.frame.width, height: 220)
-        } else if VM.goingOnEvent.count == 0 {
-            return CGSize(width: collectionView.frame.width, height: 220)
+        if indexPath.section == 0 {
+            if VM.goingOnEvent.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 220)
+            } else {
+                return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
+            }
+        } else if indexPath.section == 1 {
+            if VM.isCommingEvent.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 220)
+            } else {
+                return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
+            }
         }
         return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
+
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -242,13 +252,18 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 
 extension HomeViewController {
-
+    @objc private func refreshData(_ sender: Any) {
+        self.VM.getListEventForHome()
+    }
     func configuration() {
         self.cl.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
         self.cl.register(UINib(nibName: "NoItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NoItemCollectionViewCell")
 
         self.cl.dataSource = self
         self.cl.delegate = self
+        
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.cl.refreshControl = refreshControl
         
         initViewModel()
         observeEvent()
@@ -273,6 +288,7 @@ extension HomeViewController {
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.cl.reloadData()
+                    self?.refreshControl.endRefreshing()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):

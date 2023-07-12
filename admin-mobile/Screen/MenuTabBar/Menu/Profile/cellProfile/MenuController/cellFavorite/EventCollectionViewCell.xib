@@ -103,13 +103,13 @@
                                 <rect key="frame" x="0.0" y="100" width="177" height="95.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4th January, 2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdB-H4-Zpf">
-                                        <rect key="frame" x="24" y="49" width="87" height="12"/>
+                                        <rect key="frame" x="24" y="49" width="153" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="227 Nguyen Van Cu, Q.5, TPHCM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucb-XC-0HD">
-                                        <rect key="frame" x="24" y="67" width="148" height="12"/>
+                                        <rect key="frame" x="24" y="67" width="153" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -122,7 +122,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Organizer’s Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5be-8U-lVC">
-                                        <rect key="frame" x="6" y="4" width="111" height="14"/>
+                                        <rect key="frame" x="6" y="4" width="171" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -143,8 +143,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ucb-XC-0HD" secondAttribute="trailing" constant="5" id="6Va-2P-nWI"/>
+                                    <constraint firstAttribute="trailing" secondItem="ucb-XC-0HD" secondAttribute="trailing" id="6Va-2P-nWI"/>
                                     <constraint firstItem="wA4-Yh-c4O" firstAttribute="top" secondItem="pjj-eP-L7y" secondAttribute="bottom" constant="6" id="90x-oU-cMP"/>
+                                    <constraint firstAttribute="trailing" secondItem="sdB-H4-Zpf" secondAttribute="trailing" id="9aw-bW-9xh"/>
                                     <constraint firstItem="sdB-H4-Zpf" firstAttribute="centerY" secondItem="pjj-eP-L7y" secondAttribute="centerY" id="GNP-8B-hV6"/>
                                     <constraint firstItem="sdB-H4-Zpf" firstAttribute="leading" secondItem="pjj-eP-L7y" secondAttribute="trailing" constant="6" id="Gyz-me-0v2"/>
                                     <constraint firstAttribute="trailing" secondItem="Ih9-yr-vNs" secondAttribute="trailing" id="H4E-5w-5QP"/>
@@ -153,6 +154,7 @@
                                     <constraint firstItem="5be-8U-lVC" firstAttribute="top" secondItem="qay-TQ-4f9" secondAttribute="top" constant="4" id="LNm-Wd-iFK"/>
                                     <constraint firstItem="wA4-Yh-c4O" firstAttribute="leading" secondItem="5be-8U-lVC" secondAttribute="leading" id="NFp-bu-2Bd"/>
                                     <constraint firstItem="ucb-XC-0HD" firstAttribute="leading" secondItem="wA4-Yh-c4O" secondAttribute="trailing" constant="6" id="YAL-Xi-4gA"/>
+                                    <constraint firstAttribute="trailing" secondItem="5be-8U-lVC" secondAttribute="trailing" id="aQ5-a9-er1"/>
                                     <constraint firstItem="pjj-eP-L7y" firstAttribute="top" secondItem="Ih9-yr-vNs" secondAttribute="bottom" constant="6" id="b6y-1a-Vho"/>
                                     <constraint firstItem="5be-8U-lVC" firstAttribute="leading" secondItem="qay-TQ-4f9" secondAttribute="leading" constant="6" id="dSz-UB-ou7"/>
                                     <constraint firstItem="Ih9-yr-vNs" firstAttribute="top" secondItem="5be-8U-lVC" secondAttribute="bottom" constant="8" id="rIO-kX-pzD"/>

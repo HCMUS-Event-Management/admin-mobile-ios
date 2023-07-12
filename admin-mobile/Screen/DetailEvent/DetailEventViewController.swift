@@ -29,7 +29,7 @@ class DetailEventViewController: UIViewController {
         title.text = "Chi tiết"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
-        
+            
         navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .done, target: self, action: #selector(backScreen)),UIBarButtonItem(customView: title)]
     }
     
@@ -71,26 +71,30 @@ extension DetailEventViewController: UITableViewDataSource {
 
                 cell.eventName.text = event.title
                 cell.location.text = event.location?.name
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from: event.startAt ?? "1970-01-01T00:00:00.000Z")
+//                cell.date.text = date?.formatted(date: .abbreviated, time: .shortened)
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
-                let date = dateFormatter.date(from: event.startAt ?? "1970-01-01T00:00:00.000Z")
+                let startDate = dateFormatter.date(from: event.startAt ?? "1970-01-01T00:00:00.000Z")
 
-                let formattedDate: String
+                var formattedDate: String
                 if #available(iOS 15.0, *) {
-                    formattedDate = date?.formatted(date: .abbreviated, time: .shortened) ?? ""
+                    formattedDate = startDate?.formatted(date: .abbreviated, time: .shortened) ?? ""
                 } else {
                     let newDateFormatter = DateFormatter()
                     newDateFormatter.dateStyle = .short
                     newDateFormatter.timeStyle = .short
-
-                    formattedDate = newDateFormatter.string(from: date ?? Date())
+                    formattedDate = newDateFormatter.string(from: startDate ?? Date())
                 }
 
                 cell.date.text = formattedDate
 
-               
                 cell.organizer.text = event.user?.fullName
                 return cell
             }
@@ -136,7 +140,7 @@ extension DetailEventViewController: UITableViewDelegate{
         } else if indexPath.section == 2 {
             return tableView.layer.frame.height / 5
         } else if indexPath.section == 3 {
-            return tableView.layer.frame.height / 1.5
+            return tableView.layer.frame.height / 2.5
         }
         
         return tableView.layer.frame.height / 2.5
@@ -172,7 +176,7 @@ extension DetailEventViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
@@ -181,7 +185,6 @@ extension DetailEventViewController {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
