@@ -15,7 +15,7 @@ class TypeCollectionViewCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            viewLbl.backgroundColor = isSelected ? UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1) : UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 0.7)
+            viewLbl.backgroundColor = isSelected ? UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1) : UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 0.3)
             category.textColor = isSelected ? .white : .black
             if isSelected {
                 callback?()
@@ -31,8 +31,7 @@ class TypeCollectionViewCell: UICollectionViewCell {
     
     
     func preUI() {
-        viewLbl.layer.cornerRadius = 10
-        viewLbl.layer.masksToBounds = true
+        viewLbl.layer.cornerRadius = 18
     }
 
 }

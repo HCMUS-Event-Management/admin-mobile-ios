@@ -8,7 +8,6 @@
 
 import UIKit
 
-import UIKit
 
 protocol ReusableView: class {
     static var defaultReuseIdentifier: String { get }

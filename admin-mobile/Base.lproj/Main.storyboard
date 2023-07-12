@@ -794,7 +794,7 @@
                     <tabBarItem key="tabBarItem" title="Search" image="SearchIcon" id="Ihg-rP-7dx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="KpE-yr-6lc">
-                        <rect key="frame" x="0.0" y="48" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>

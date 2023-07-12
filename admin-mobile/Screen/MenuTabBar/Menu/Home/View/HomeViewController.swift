@@ -12,21 +12,23 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var cl: UICollectionView!
     
     private var VM = HomeViewModel()
-    
+    private var isCollectionViewInteractionEnabled = true
+    private var clickProcessing = false
     private var titleSection = ["Sự kiện đang diễn ra 🔥","Sự kiện sắp diễn ra    ✨"]
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+
         VM.getListEventForHome()
         print(Realm.Configuration.defaultConfiguration.fileURL)
         // Do any additional setup after loading the view.
+
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
        configNaviBar()
     }
-    
     func configNaviBar() {
         navigationController?.navigationBar.tintColor = .label
         
@@ -56,12 +58,16 @@ class HomeViewController: UIViewController {
     
     func changeDetailEvent(indexPath: IndexPath) {
         if indexPath.section == 0 {
-            Contanst.userdefault.set(VM.goingOnEvent[indexPath.row].id, forKey: "eventIdDetail")
+            if self.VM.goingOnEvent.count != 0 {
+                Contanst.userdefault.set(VM.goingOnEvent[indexPath.row].id, forKey: "eventIdDetail")
+                changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+            }
         } else {
-            Contanst.userdefault.set(VM.isCommingEvent[indexPath.row].id, forKey: "eventIdDetail")
-
+            if self.VM.isCommingEvent.count != 0 {
+                Contanst.userdefault.set(VM.isCommingEvent[indexPath.row].id, forKey: "eventIdDetail")
+                changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+            }
         }
-        changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
     }
 
 }
@@ -70,73 +76,106 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let eventGoingOnEvent = self.VM.goingOnEvent[indexPath.row]
-            if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
-                cell.eventName.text = eventGoingOnEvent.title
-                cell.owner.text = "Bởi \(eventGoingOnEvent.user!.fullName)"
-                if eventGoingOnEvent.type == "PAID" {
-                    cell.paidName.text = "Có Phí"
-                } else {
-                    cell.paidName.text = "Miễn Phí"
+            if self.VM.goingOnEvent.count == 0 {
+                if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
+                    cell.tilte.text = "Không có sự kiện nào"
+                   return cell
                 }
-                
-                if #available(iOS 15.0, *) {
-                    cell.timeStart.text = eventGoingOnEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
-                } else {
-                    let newDateFormatter = DateFormatter()
-                    newDateFormatter.dateStyle = .short
-                    newDateFormatter.timeStyle = .none
-                    let formattedDate = newDateFormatter.string(from: eventGoingOnEvent.startAt ?? Date())
-                    cell.timeStart.text = formattedDate
-                
+            } else {
+                let eventGoingOnEvent = self.VM.goingOnEvent[indexPath.row]
+                if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
+                    cell.eventName.text = eventGoingOnEvent.title
+                    cell.owner.text = "Tạo bởi \(eventGoingOnEvent.user!.fullName)"
+                    if eventGoingOnEvent.type == "PAID" {
+                        cell.paidName.text = "Có Phí"
+                    } else {
+                        cell.paidName.text = "Miễn Phí"
+                    }
+                    if #available(iOS 15.0, *) {
+                        cell.timeStart.text = eventGoingOnEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                    } else {
+                        let newDateFormatter = DateFormatter()
+                        newDateFormatter.dateStyle = .short
+                        newDateFormatter.timeStyle = .none
+                        let formattedDate = newDateFormatter.string(from: eventGoingOnEvent.startAt ?? Date())
+                        cell.timeStart.text = formattedDate
+                        
+                    }
+                    cell.locationName.text = eventGoingOnEvent.location?.name
+                    
+                    cell.imgAvatar.kf.setImage(with: URL(string: self.VM.goingOnEvent[indexPath.row].image))
+                    
+                    cell.callback = {
+                        guard self.isCollectionViewInteractionEnabled, !self.clickProcessing else {
+                            return
+                        }
+                                    
+                        self.clickProcessing = true
+                                    
+                        // Perform your desired action for the selected item
+                        self.changeDetailEvent(indexPath: indexPath)
+                                    
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.clickProcessing = false
+                        }
+                    }
+                    cell.layer.cornerRadius = 10
+                    cell.layer.masksToBounds = true
+                    
+                    return cell
                 }
-                
-                
-                cell.locationName.text = eventGoingOnEvent.location?.name
-                
-                cell.imgAvatar.kf.setImage(with: URL(string: self.VM.goingOnEvent[indexPath.row].image))
-
-                cell.callback = {
-                    self.changeDetailEvent(indexPath: indexPath)
-                }
-                cell.layer.cornerRadius = 10
-                cell.layer.masksToBounds = true
-                
-                return cell
             }
         } else if indexPath.section == 1{
-            let eventIsCommingEvent = self.VM.isCommingEvent[indexPath.row]
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
-                
-                cell.eventName.text = eventIsCommingEvent.title
-                cell.owner.text = "Bởi \(eventIsCommingEvent.user!.fullName)"
-                if eventIsCommingEvent.type == "PAID" {
-                    cell.paidName.text = "Có Phí"
-                } else {
-                    cell.paidName.text = "Miễn Phí"
+            if self.VM.isCommingEvent.count == 0 {
+                if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
+                    cell.tilte.text = "Không có sự kiện nào"
+                   return cell
                 }
-                if #available(iOS 15.0, *) {
-                    cell.timeStart.text = eventIsCommingEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
-                } else {
-                    let newDateFormatter = DateFormatter()
-                    newDateFormatter.dateStyle = .short
-                    newDateFormatter.timeStyle = .short
-                    let formattedDate = newDateFormatter.string(from: eventIsCommingEvent.startAt ?? Date())
-                    cell.timeStart.text = formattedDate
-                
+            } else {
+                let eventIsCommingEvent = self.VM.isCommingEvent[indexPath.row]
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
+                    
+                    cell.eventName.text = eventIsCommingEvent.title
+                    cell.owner.text = "Tạo bởi \(eventIsCommingEvent.user!.fullName)"
+                    if eventIsCommingEvent.type == "PAID" {
+                        cell.paidName.text = "Có Phí"
+                    } else {
+                        cell.paidName.text = "Miễn Phí"
+                    }
+                    if #available(iOS 15.0, *) {
+                        cell.timeStart.text = eventIsCommingEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                    } else {
+                        let newDateFormatter = DateFormatter()
+                        newDateFormatter.dateStyle = .short
+                        newDateFormatter.timeStyle = .none
+                        let formattedDate = newDateFormatter.string(from: eventIsCommingEvent.startAt ?? Date())
+                        cell.timeStart.text = formattedDate
+                        
+                    }
+                    cell.locationName.text = eventIsCommingEvent.location?.name
+                    cell.imgAvatar.kf.setImage(with: URL(string: self.VM.isCommingEvent[indexPath.row].image))
+                    
+                    
+                    cell.callback = {
+                        guard self.isCollectionViewInteractionEnabled, !self.clickProcessing else {
+                            return
+                        }
+                                    
+                        self.clickProcessing = true
+                                    
+                        // Perform your desired action for the selected item
+                        self.changeDetailEvent(indexPath: indexPath)
+                                    
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.clickProcessing = false
+                        }
+                    }
+                    
+                    cell.layer.cornerRadius = 10
+                    cell.layer.masksToBounds = true
+                    
+                    return cell
                 }
-                cell.locationName.text = eventIsCommingEvent.location?.name
-                cell.imgAvatar.kf.setImage(with: URL(string: self.VM.isCommingEvent[indexPath.row].image))
-
-                
-                cell.callback = {
-                    self.changeDetailEvent(indexPath: indexPath)
-                }
-                
-                cell.layer.cornerRadius = 10
-                cell.layer.masksToBounds = true
-                
-                return cell
             }
         }
         
@@ -151,8 +190,14 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(section == 0) {
+            if self.VM.goingOnEvent.count == 0 {
+                return 1
+            }
             return self.VM.goingOnEvent.count
         } else {
+            if self.VM.isCommingEvent.count == 0 {
+                return 1
+            }
             return self.VM.isCommingEvent.count
         }
     }
@@ -160,6 +205,11 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if VM.isCommingEvent.count == 0 {
+            return CGSize(width: collectionView.frame.width, height: 220)
+        } else if VM.goingOnEvent.count == 0 {
+            return CGSize(width: collectionView.frame.width, height: 220)
+        }
         return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
     }
     
@@ -173,8 +223,21 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        changeDetailEvent(indexPath: indexPath)
-    }
+        guard isCollectionViewInteractionEnabled, !clickProcessing else {
+                        return
+                    }
+                    
+                    clickProcessing = true
+                    
+                    // Perform your desired action for the selected item
+                    changeDetailEvent(indexPath: indexPath)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.clickProcessing = false
+                    }
+            
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
 }
 
 
@@ -182,6 +245,8 @@ extension HomeViewController {
 
     func configuration() {
         self.cl.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
+        self.cl.register(UINib(nibName: "NoItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NoItemCollectionViewCell")
+
         self.cl.dataSource = self
         self.cl.delegate = self
         
@@ -202,11 +267,10 @@ extension HomeViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                print(self!.VM.isCommingEvent)
                 DispatchQueue.main.async {
                     self?.cl.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
