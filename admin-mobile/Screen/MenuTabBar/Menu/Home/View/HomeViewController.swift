@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     private var VM = HomeViewModel()
     private var isCollectionViewInteractionEnabled = true
     private var clickProcessing = false
-    private var titleSection = ["Sự kiện đang diễn ra 🔥","Sự kiện sắp diễn ra    ✨"]
+    private var titleSection = ["Sự kiện đang diễn ra 🔥","Sự kiện thuộc về bạn   ✨"]
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
@@ -64,8 +64,8 @@ class HomeViewController: UIViewController {
                 changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
             }
         } else {
-            if self.VM.isCommingEvent.count != 0 {
-                Contanst.userdefault.set(VM.isCommingEvent[indexPath.row].id, forKey: "eventIdDetail")
+            if self.VM.isMyEvent.count != 0 {
+                Contanst.userdefault.set(VM.isMyEvent[indexPath.row].id, forKey: "eventIdDetail")
                 changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
             }
         }
@@ -127,13 +127,13 @@ extension HomeViewController: UICollectionViewDataSource {
                 }
             }
         } else if indexPath.section == 1{
-            if self.VM.isCommingEvent.count == 0 {
+            if self.VM.isMyEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
                     cell.tilte.text = "Không có sự kiện"
                    return cell
                 }
             } else {
-                let eventIsCommingEvent = self.VM.isCommingEvent[indexPath.row]
+                let eventIsCommingEvent = self.VM.isMyEvent[indexPath.row]
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     
                     cell.eventName.text = eventIsCommingEvent.title
@@ -154,7 +154,7 @@ extension HomeViewController: UICollectionViewDataSource {
                         
                     }
                     cell.locationName.text = eventIsCommingEvent.location?.name
-                    cell.imgAvatar.kf.setImage(with: URL(string: self.VM.isCommingEvent[indexPath.row].image))
+                    cell.imgAvatar.kf.setImage(with: URL(string: self.VM.isMyEvent[indexPath.row].image))
                     
                     
                     cell.callback = {
@@ -196,10 +196,10 @@ extension HomeViewController: UICollectionViewDataSource {
             }
             return self.VM.goingOnEvent.count
         } else {
-            if self.VM.isCommingEvent.count == 0 {
+            if self.VM.isMyEvent.count == 0 {
                 return 1
             }
-            return self.VM.isCommingEvent.count
+            return self.VM.isMyEvent.count
         }
     }
 }
@@ -213,7 +213,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                 return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
             }
         } else if indexPath.section == 1 {
-            if VM.isCommingEvent.count == 0 {
+            if VM.isMyEvent.count == 0 {
                 return CGSize(width: collectionView.frame.width, height: 220)
             } else {
                 return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
@@ -253,7 +253,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController {
     @objc private func refreshData(_ sender: Any) {
-        self.VM.getListEventForHome()
+        self.VM.fetchListGoingOn()
+        self.VM.fetchListIsEvent()
     }
     func configuration() {
         self.cl.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")

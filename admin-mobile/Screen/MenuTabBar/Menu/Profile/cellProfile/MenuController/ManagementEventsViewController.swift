@@ -12,7 +12,7 @@ class ManagementEventsViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var clEvent: UICollectionView!
     @IBOutlet weak var clType: UICollectionView!
     let refreshControl = UIRefreshControl()
-    private var type = ""
+    private var type = "APPROVED"
 
     @IBOutlet weak var countType: UILabel!
     private var VM = EventsViewModel()

@@ -15,14 +15,14 @@ class PasswordTextField: UITextField {
     }
     
     private func commonInit() {
-        // Thiết lập hình ảnh cho nút hiển thị mật khẩu
-        let showImage = UIImage(systemName: "eye.fill")
+        // Set the image for the show password button
+        let showImage = UIImage(systemName: "eye.fill")?.resize(toWidth: 15, toHeight: 10)
         showPasswordButton.setImage(showImage, for: .normal)
-        showPasswordButton.tintColor = .gray
-        showPasswordButton.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
+        showPasswordButton.tintColor = .lightGray
+        showPasswordButton.frame = CGRect(x: 0, y: 0, width: 15, height: 10)
         showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         
-        // Đặt kiểu hiển thị cho trường nhập mật khẩu
+        // Set the display style for the password text field
         isSecureTextEntry = true
         rightView = showPasswordButton
         rightViewMode = .always
@@ -30,7 +30,17 @@ class PasswordTextField: UITextField {
     
     @objc private func togglePasswordVisibility() {
         isSecureTextEntry = !isSecureTextEntry
-        let showImage = UIImage(systemName: isSecureTextEntry ? "eye.fill" : "eye.slash.fill")
+        let showImage = UIImage(systemName: isSecureTextEntry ? "eye.fill" : "eye.slash.fill")?.resize(toWidth: 15, toHeight: 10)
         showPasswordButton.setImage(showImage, for: .normal)
+    }
+}
+
+extension UIImage {
+    func resize(toWidth width: CGFloat, toHeight height: CGFloat) -> UIImage? {
+        let size = CGSize(width: width, height: height)
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
     }
 }
