@@ -150,7 +150,7 @@ extension HomeViewModel {
     
     func getListIsMyFromServer() {
 
-        APIManager.shared.request(modelType: ReponseListEvent.self, type: EntityEndPoint.listEventOfManagerUser(page: 1, perPage: 10, filterStatus: "", sort: "", fullTextSearch: "", type: ""), params: nil, completion: {
+        APIManager.shared.request(modelType: ReponseListEvent.self, type: EntityEndPoint.listEventOfManagerUser(page: 1, perPage: 10, filterStatus: "APPROVED", sort: "", fullTextSearch: "", type: ""), params: nil, completion: {
             result in
             switch result {
             case .success(let value):

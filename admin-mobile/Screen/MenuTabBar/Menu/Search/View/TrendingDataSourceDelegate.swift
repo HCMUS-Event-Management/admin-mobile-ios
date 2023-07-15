@@ -10,8 +10,8 @@ import UIKit
 
 class TrendingDataSourceDelegate: NSObject {
     
-    private let terms = ["test", "1aa", "1aa22",
-                         "design+code", "1aa2233", "paid", "ted"]
+    private let terms = ["giới thiệu", "giáo dục", "âm nhạc",
+                         "thể thao", "sự kiện", "kỉ niệm", "khác"]
     var didSelect: (String) -> Void = { _ in }
 }
 

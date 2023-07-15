@@ -23,6 +23,11 @@ class ManagementEventsViewController: UIViewController, UICollectionViewDelegate
         super.viewDidLoad()
         configuration()
 //        VM.fetchCategoryAll()
+        
+        let ind =  IndexPath(item: 1, section: 0)
+        self.clType.selectItem(at:ind, animated: false, scrollPosition: [])
+        self.collectionView((self.clType)!, didSelectItemAt:ind)
+        self.clEvent.reloadData()
 
     }
     
@@ -185,10 +190,7 @@ extension ManagementEventsViewController {
     
         
         
-        let ind =  IndexPath(item: 1, section: 0)
-        self.clType.selectItem(at:ind, animated: false, scrollPosition: [])
-        self.collectionView((self.clType)!, didSelectItemAt:ind)
-        self.clEvent.reloadData()
+        
         
         
         self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)

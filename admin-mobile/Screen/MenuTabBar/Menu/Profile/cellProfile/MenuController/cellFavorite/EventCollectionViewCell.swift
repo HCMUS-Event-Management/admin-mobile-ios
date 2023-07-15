@@ -17,7 +17,6 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeStart: UILabel!
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var paidView: UIView!
-    @IBOutlet weak var archiveView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var btnSeeDetail: UIButton!
     override func awakeFromNib() {
@@ -43,8 +42,6 @@ class EventCollectionViewCell: UICollectionViewCell {
         imgAvatar.layer.masksToBounds = true
         
         
-        archiveView.layer.cornerRadius = 5
-        archiveView.layer.masksToBounds = true
         
         mainView.layer.cornerRadius = 10
         mainView.layer.masksToBounds = true

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,37 +34,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="167" height="95"/>
                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiz-hR-BOK">
-                                        <rect key="frame" x="141" y="10" width="16" height="19"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archivebox.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aw1-PP-2E9">
-                                                <rect key="frame" x="0.0" y="1" width="16" height="16.5"/>
-                                                <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="tintColor" systemColor="systemYellowColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="aw1-PP-2E9" secondAttribute="height" multiplier="1:1.2" id="tiN-mb-3fT"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="aw1-PP-2E9" secondAttribute="trailing" id="9XE-fk-JQW"/>
-                                            <constraint firstAttribute="bottom" secondItem="aw1-PP-2E9" secondAttribute="bottom" id="Uxo-wO-kfV"/>
-                                            <constraint firstItem="aw1-PP-2E9" firstAttribute="top" secondItem="eiz-hR-BOK" secondAttribute="top" id="iqC-hh-CHe"/>
-                                            <constraint firstItem="aw1-PP-2E9" firstAttribute="leading" secondItem="eiz-hR-BOK" secondAttribute="leading" id="yH3-ZC-med"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3r-sY-5Me">
                                         <rect key="frame" x="8" y="68" width="42.5" height="19"/>
                                         <subviews>
@@ -90,12 +58,9 @@
                                     <constraint firstItem="y3r-sY-5Me" firstAttribute="leading" secondItem="m3B-lj-I9S" secondAttribute="leading" constant="8" id="Elz-6m-7CG"/>
                                     <constraint firstItem="y3r-sY-5Me" firstAttribute="height" secondItem="m3B-lj-I9S" secondAttribute="height" multiplier="0.2" id="RQV-iY-YSq"/>
                                     <constraint firstAttribute="bottom" secondItem="m3B-lj-I9S" secondAttribute="bottom" id="VwL-zq-GgP"/>
-                                    <constraint firstItem="eiz-hR-BOK" firstAttribute="height" secondItem="m3B-lj-I9S" secondAttribute="height" multiplier="0.2" id="YdK-nT-QV7"/>
                                     <constraint firstAttribute="trailing" secondItem="m3B-lj-I9S" secondAttribute="trailing" id="Yre-8l-01O"/>
                                     <constraint firstItem="m3B-lj-I9S" firstAttribute="leading" secondItem="CLM-m4-0Ky" secondAttribute="leading" id="ZZU-n3-T3X"/>
                                     <constraint firstItem="m3B-lj-I9S" firstAttribute="top" secondItem="CLM-m4-0Ky" secondAttribute="top" id="dGi-Sy-FHA"/>
-                                    <constraint firstItem="eiz-hR-BOK" firstAttribute="top" secondItem="CLM-m4-0Ky" secondAttribute="top" constant="10" id="f2q-Ej-Pq6"/>
-                                    <constraint firstAttribute="trailing" secondItem="eiz-hR-BOK" secondAttribute="trailing" constant="10" id="h8P-sk-Tu0"/>
                                     <constraint firstAttribute="bottom" secondItem="y3r-sY-5Me" secondAttribute="bottom" constant="8" id="kfP-v3-5R0"/>
                                 </constraints>
                             </view>
@@ -189,7 +154,6 @@
             </constraints>
             <size key="customSize" width="177" height="238"/>
             <connections>
-                <outlet property="archiveView" destination="eiz-hR-BOK" id="wur-ro-UWh"/>
                 <outlet property="btnSeeDetail" destination="1aQ-b3-hD9" id="4bD-ZY-JWE"/>
                 <outlet property="eventName" destination="Ih9-yr-vNs" id="soX-ac-Fof"/>
                 <outlet property="imgAvatar" destination="m3B-lj-I9S" id="pjy-vX-u1J"/>
@@ -204,15 +168,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="archivebox.fill" catalog="system" width="128" height="107"/>
         <image name="calendar" width="13" height="13"/>
         <image name="location" width="13" height="13"/>
         <image name="picture nil" width="156" height="87"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

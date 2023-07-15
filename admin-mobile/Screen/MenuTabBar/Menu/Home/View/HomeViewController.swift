@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     private var VM = HomeViewModel()
     private var isCollectionViewInteractionEnabled = true
     private var clickProcessing = false
-    private var titleSection = ["Sự kiện đang diễn ra 🔥","Sự kiện thuộc về bạn   ✨"]
+    private var titleSection = ["Sự kiện đang diễn ra 🔥","Sự kiện được duyệt của bạn 🔔"]
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
@@ -208,13 +208,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
             if VM.goingOnEvent.count == 0 {
-                return CGSize(width: collectionView.frame.width, height: 220)
+                return CGSize(width: collectionView.frame.width, height: 140)
             } else {
                 return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
             }
         } else if indexPath.section == 1 {
             if VM.isMyEvent.count == 0 {
-                return CGSize(width: collectionView.frame.width, height: 220)
+                return CGSize(width: collectionView.frame.width, height: 140)
             } else {
                 return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
             }
