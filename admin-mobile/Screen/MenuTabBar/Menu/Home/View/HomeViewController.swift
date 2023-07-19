@@ -86,8 +86,11 @@ extension HomeViewController: UICollectionViewDataSource {
                     cell.owner.text = "Tạo bởi \(eventGoingOnEvent.user!.fullName)"
                     if eventGoingOnEvent.type == "PAID" {
                         cell.paidName.text = "Có Phí"
+                        cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.75)
+
                     } else {
                         cell.paidName.text = "Miễn Phí"
+                        cell.paidView.backgroundColor = UIColor(red: 255/255, green: 215/255, blue: 0/255, alpha: 0.5)
                     }
                     if #available(iOS 15.0, *) {
                         cell.timeStart.text = eventGoingOnEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
@@ -137,8 +140,11 @@ extension HomeViewController: UICollectionViewDataSource {
                     cell.owner.text = "Tạo bởi \(eventIsCommingEvent.user!.fullName)"
                     if eventIsCommingEvent.type == "PAID" {
                         cell.paidName.text = "Có Phí"
+                        cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.75)
+
                     } else {
                         cell.paidName.text = "Miễn Phí"
+                        cell.paidView.backgroundColor = UIColor(red: 255/255, green: 215/255, blue: 0/255, alpha: 0.5)
                     }
                     if #available(iOS 15.0, *) {
                         cell.timeStart.text = eventIsCommingEvent.startAt?.formatted(date: .abbreviated, time: .omitted)

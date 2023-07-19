@@ -108,8 +108,11 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
                     cell.owner.text = "Tạo bởi \(event.user!.fullName)"
                     if event.type == "PAID" {
                         cell.paidName.text = "Có Phí"
+                        cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.75)
+
                     } else {
                         cell.paidName.text = "Miễn Phí"
+                        cell.paidView.backgroundColor = UIColor(red: 255/255, green: 215/255, blue: 0/255, alpha: 0.5)
                     }
                     
                     if #available(iOS 15.0, *) {
