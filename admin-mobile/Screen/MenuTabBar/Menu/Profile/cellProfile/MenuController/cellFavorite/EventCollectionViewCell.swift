@@ -38,8 +38,10 @@ class EventCollectionViewCell: UICollectionViewCell {
         paidView.layer.cornerRadius = 10
         paidView.layer.masksToBounds = true
         
-        imgAvatar.layer.cornerRadius = 20
+        imgAvatar.layer.cornerRadius = 10
         imgAvatar.layer.masksToBounds = true
+        imgAvatar.layer.borderWidth = 0.3
+        imgAvatar.layer.borderColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
         
         
         

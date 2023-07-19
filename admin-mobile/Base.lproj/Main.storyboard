@@ -186,7 +186,7 @@
         <!--View Controller-->
         <scene sceneID="FwT-tm-pZo">
             <objects>
-                <viewController storyboardIdentifier="aaaa" id="TAA-Nd-InH" customClass="ViewController" customModule="admin_mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="TAA-Nd-InH" customClass="ViewController" customModule="admin_mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="x4Q-bt-hqF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -209,7 +209,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The event booking, online ticketing application of VNUHCM-HCMUS." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLE-1X-uMf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Một ứng dụng cho các nhà quản lý event của VNUHCM-HCMUS." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLE-1X-uMf">
                                         <rect key="frame" x="44.5" y="88" width="325" height="29"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -234,7 +234,7 @@
                                     <constraint firstAttribute="height" constant="38" id="xen-pF-QoU"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Get Started">
+                                <buttonConfiguration key="configuration" style="gray" title="Bắt đầu">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.36862745099999999" green="0.52941176469999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -259,6 +259,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xSf-tR-KMf"/>
+                    <connections>
+                        <outlet property="btn" destination="HfQ-gV-8wH" id="T6o-0f-TvV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUS-Ol-LJt" sceneMemberID="firstResponder"/>
             </objects>

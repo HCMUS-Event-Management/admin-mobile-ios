@@ -84,7 +84,6 @@ class ProfileDetailViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             // Cancel button tapped
-            print("Cancel button tapped")
         }
         alertController.addAction(cancelAction)
         

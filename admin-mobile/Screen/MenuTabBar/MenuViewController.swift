@@ -20,7 +20,6 @@ class MenuViewController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         //khoá xoay màn hình
-//        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.showToast(message: "Bạn đã đăng nhập", font: .systemFont(ofSize: 12))
     }
 }
@@ -51,8 +50,6 @@ extension MenuViewController {
             case .stopLoading: break
             case .dataLoaded: break
             case .error(let error):
-//                print(error)
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))

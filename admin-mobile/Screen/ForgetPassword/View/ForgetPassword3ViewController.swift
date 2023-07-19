@@ -6,14 +6,16 @@
 //
 
 import UIKit
-
+import Reachability
 class ForgetPassword3ViewController: UIViewController {
     private var VM = ForgetPasswordViewModel()
 
     @IBOutlet weak var btnDone: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var txtConfirmPass: PasswordTextField!
+    //    @IBOutlet weak var txtConfirmPass: UITextField!
     @IBOutlet weak var txtNewPass: PasswordTextField!
+    //    @IBOutlet weak var txtNewPass: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         btnDone.addTarget(self, action: #selector(postAPI), for: .touchUpInside)
@@ -33,10 +35,22 @@ class ForgetPassword3ViewController: UIViewController {
     
     @objc func postAPI () {
         if txtNewPass.text == "" || txtConfirmPass.text == ""{
-            print("emtyp")
+            showToast(message: "Chưa điền Password", font: .systemFont(ofSize: 12))
         } else {
-            let param = ForgetpasswordDto(email: Contanst.userdefault.string(forKey: "email"), otp:  Contanst.userdefault.string(forKey: "otp"), password: txtNewPass.text, verifiedPassword: txtConfirmPass.text)
-            VM.forgetPassword(from: param)
+            switch try! Reachability().connection {
+              case .wifi:
+                let param = ForgetpasswordDto(email: Contanst.userdefault.string(forKey: "email"), otp:  Contanst.userdefault.string(forKey: "otp"), password: txtNewPass.text, verifiedPassword: txtConfirmPass.text)
+                VM.forgetPassword(from: param)
+            case .cellular:
+                let param = ForgetpasswordDto(email: Contanst.userdefault.string(forKey: "email"), otp:  Contanst.userdefault.string(forKey: "otp"), password: txtNewPass.text, verifiedPassword: txtConfirmPass.text)
+                VM.forgetPassword(from: param)
+            case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
+            
+            
         }
 
     }
@@ -67,7 +81,9 @@ extension ForgetPassword3ViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.showToast(message: "Đổi mật khẩu thành công", font: .systemFont(ofSize: 12))
@@ -82,8 +98,17 @@ extension ForgetPassword3ViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
+                        if error! == "Mã OTP đã hết hạn hoặc không hợp lệ" {
+                            self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                            self?.stoppedLoader(loader: loader ?? UIAlertController())
+                            self?.navigationController?.popViewController(animated: true)
+                            self?.navigationController?.popViewController(animated: false)
+
+                        }
+                        
                         self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
+                       
                     }
                 }
                 

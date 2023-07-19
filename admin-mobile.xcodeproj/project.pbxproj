@@ -75,7 +75,6 @@
 		A43052262A277CF100DB9A92 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43052242A277CF100DB9A92 /* AlertView.swift */; };
 		A43EA1172A45576500BDF0D7 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA1162A45576500BDF0D7 /* PasswordTextField.swift */; };
 		A45EBB7029D3E54B00120D06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB6F29D3E54B00120D06 /* AppDelegate.swift */; };
-		A45EBB7429D3E54B00120D06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB7329D3E54B00120D06 /* ViewController.swift */; };
 		A45EBB7729D3E54B00120D06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A45EBB7529D3E54B00120D06 /* Main.storyboard */; };
 		A45EBB7A29D3E54B00120D06 /* admin_mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB7829D3E54B00120D06 /* admin_mobile.xcdatamodeld */; };
 		A45EBB7C29D3E54D00120D06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45EBB7B29D3E54D00120D06 /* Assets.xcassets */; };
@@ -87,6 +86,7 @@
 		A46147CB29EA80D600A90A0E /* ReponsePermissionEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147C829EA80D600A90A0E /* ReponsePermissionEvents.swift */; };
 		A46147CC29EA80D600A90A0E /* DataReponsePermissionEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147C929EA80D600A90A0E /* DataReponsePermissionEvents.swift */; };
 		A46147CE29EA835000A90A0E /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46147CD29EA835000A90A0E /* Roles.swift */; };
+		A487154B2A6573280052D987 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A487154A2A6573280052D987 /* ViewController.swift */; };
 		A49EDCEB2A3ACC2400A8953B /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCEA2A3ACC2400A8953B /* EventsViewModel.swift */; };
 		A49EDCED2A3ACCE400A8953B /* ReponseGetAllCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCEC2A3ACCE400A8953B /* ReponseGetAllCategory.swift */; };
 		A49EDCF12A3ACD4200A8953B /* NoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCEF2A3ACD4200A8953B /* NoItemCollectionViewCell.swift */; };
@@ -235,7 +235,6 @@
 		A43EA1162A45576500BDF0D7 /* PasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		A45EBB6C29D3E54B00120D06 /* admin-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "admin-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45EBB6F29D3E54B00120D06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A45EBB7329D3E54B00120D06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A45EBB7629D3E54B00120D06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A45EBB7929D3E54B00120D06 /* admin_mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = admin_mobile.xcdatamodel; sourceTree = "<group>"; };
 		A45EBB7B29D3E54D00120D06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,6 +249,7 @@
 		A46147C829EA80D600A90A0E /* ReponsePermissionEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponsePermissionEvents.swift; sourceTree = "<group>"; };
 		A46147C929EA80D600A90A0E /* DataReponsePermissionEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataReponsePermissionEvents.swift; sourceTree = "<group>"; };
 		A46147CD29EA835000A90A0E /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		A487154A2A6573280052D987 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A49EDCEA2A3ACC2400A8953B /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		A49EDCEC2A3ACCE400A8953B /* ReponseGetAllCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseGetAllCategory.swift; sourceTree = "<group>"; };
 		A49EDCEF2A3ACD4200A8953B /* NoItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -624,7 +624,7 @@
 				A480744B2A25061700FD001C /* CustomAlert */,
 				A4E156DB29E7E1C100853BD2 /* MenuTabBar */,
 				A45EBBA529D40BA300120D06 /* Login */,
-				A45EBB7329D3E54B00120D06 /* ViewController.swift */,
+				A487154A2A6573280052D987 /* ViewController.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -1229,7 +1229,6 @@
 				A42C5D6E2A264988008B23A6 /* Bundle+JSON.swift in Sources */,
 				A4C37AF829EBCE5200322D9F /* ReponseValidateTicket.swift in Sources */,
 				A42C5DB12A264C97008B23A6 /* ImageQRCodeTableViewCell.swift in Sources */,
-				A45EBB7429D3E54B00120D06 /* ViewController.swift in Sources */,
 				A4E1573E29E7E1C200853BD2 /* PaymentMethodViewController.swift in Sources */,
 				A4E156B629E7DDDC00853BD2 /* LoginFirstScreenViewModel.swift in Sources */,
 				A42C5DAB2A264C97008B23A6 /* InfoTicketTableViewCell.swift in Sources */,
@@ -1317,6 +1316,7 @@
 				A42C5D882A264A25008B23A6 /* EventSessionTableViewCell.swift in Sources */,
 				A4E1576B29E7FF0200853BD2 /* LoginFirstScreenViewController.swift in Sources */,
 				A4E1573C29E7E1C200853BD2 /* EditProfileTableViewCell.swift in Sources */,
+				A487154B2A6573280052D987 /* ViewController.swift in Sources */,
 				A4E1573429E7E1C200853BD2 /* ProfileDetailViewController.swift in Sources */,
 				A42C5D9C2A264AAE008B23A6 /* HomeViewModel.swift in Sources */,
 				A4E156DA29E7E11000853BD2 /* TokenService.swift in Sources */,
@@ -1427,6 +1427,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "A-HCMUSEvMana";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1482,6 +1483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "A-HCMUSEvMana";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1505,7 +1507,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "admin-mobile/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "";
-				"INFOPLIST_KEY_CFBundleDisplayName[sdk=iphoneos*]" = HCMUSEvManaAdmin;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=iphoneos*]" = "A-HCMUSEvMana";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Hãy cho phép app dùng camera sau để quét ?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1537,7 +1539,7 @@
 				DEVELOPMENT_TEAM = JGC4QV4YMX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "admin-mobile/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = HCMUSEvManaAdmin;
+				INFOPLIST_KEY_CFBundleDisplayName = "A-HCMUSEvMana";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Hãy cho phép app dùng camera sau để quét ?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

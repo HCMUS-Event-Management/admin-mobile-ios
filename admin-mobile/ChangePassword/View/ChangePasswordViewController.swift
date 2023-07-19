@@ -153,11 +153,8 @@ extension ChangePasswordViewController {
                     
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
-            case .dataLoaded:
-                print("Data loaded...")
+            case .dataLoaded: break
             case .error(let error):
-                print(error)
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse500.localizedDescription) {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Chưa kết nổi mạng", font: .systemFont(ofSize: 12.0))

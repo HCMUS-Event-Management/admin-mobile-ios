@@ -64,7 +64,6 @@ class LoginFirstScreenViewModel {
             let params = InfoLogin(email: username, password: password)
             let parameter = try? APIManager.shared.encodeBody(value: params)
             
-            print(params)
             APIManager.shared.request(modelType: ReponseLogin.self, type: UserEndPoint.login(infoLogin: params), params: parameter, completion: {
                 result in
                 switch result {

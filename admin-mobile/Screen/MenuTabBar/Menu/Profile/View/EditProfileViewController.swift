@@ -43,7 +43,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
                 // so sánh
                 DispatchQueue.main.async {
                     if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == formattedDate && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
-                        print(fullname?.tf.text, self.VM.userInfoDetail?.fullName , phone?.tf.text ,self.VM.userInfoDetail?.phone ,dot?.tf.text , formattedDate,self.VM.userInfoDetail?.birthday ,idCard?.tf.text, self.VM.userInfoDetail?.identityCard , gender?.tf.text, self.VM.userInfoDetail?.gender, address?.tf.text ,self.VM.userInfoDetail?.address)
+//                        print(fullname?.tf.text, self.VM.userInfoDetail?.fullName , phone?.tf.text ,self.VM.userInfoDetail?.phone ,dot?.tf.text , formattedDate,self.VM.userInfoDetail?.birthday ,idCard?.tf.text, self.VM.userInfoDetail?.identityCard , gender?.tf.text, self.VM.userInfoDetail?.gender, address?.tf.text ,self.VM.userInfoDetail?.address)
                         self.showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
                     } else {
                         let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
@@ -107,7 +107,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
                 showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
             }
         } else{
-           print("Something went wrong")
+            showToast(message: "Lỗi trong upload avatar", font: .systemFont(ofSize: 12))
         }
         
        self.dismiss(animated: true, completion: nil)
@@ -198,7 +198,6 @@ extension EditProfileViewController: UITableViewDataSource {
                 
                 cell.callback = {
                     if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-                        print("Button capture")
             
                         self.imagePicker.delegate = self
                         self.imagePicker.sourceType = .savedPhotosAlbum
@@ -217,7 +216,6 @@ extension EditProfileViewController: UITableViewDataSource {
                 return cell
             }
         } else if (indexPath.row == 1) {
-            print(indexPath)
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.fullName

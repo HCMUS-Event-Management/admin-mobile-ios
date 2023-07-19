@@ -91,9 +91,6 @@ class LoginFirstScreenViewController: UIViewController {
         super.viewDidLoad()
         configuration()
         CheckAndAdd()
-        print(Contanst.userdefault.string(forKey: "userToken"))
-        
-        
         
     }
     
@@ -149,7 +146,6 @@ extension LoginFirstScreenViewController {
                     let appDelegate = UIApplication.shared.delegate as? AppDelegate
                     let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController
                     let navVC = UINavigationController(rootViewController: vc!)
-                    print(appDelegate?.window)
                     appDelegate?.window?.rootViewController = navVC
                 }
             case .error(let error):

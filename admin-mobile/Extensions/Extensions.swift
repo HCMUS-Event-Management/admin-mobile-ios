@@ -117,26 +117,6 @@ extension UIViewController {
         }
         return UIImage(systemName: "xmark") ?? UIImage()
     }
-    
-    func decodeRSA(from string: String) -> String? {
-        do {
-
-            let privateKey = try PrivateKey(pemEncoded: ProcessInfo.processInfo.environment["RSA_PRIVATE_KEY"]!)
-            
-            let encrypted = try EncryptedMessage(base64Encoded: string)
-            let clear = try encrypted.decrypted(with: privateKey, padding: .PKCS1)
-
-            // Then you can use:
-            let data = clear.data
-            let base64String = clear.base64String
-            let result = try clear.string(encoding: .utf8)
-            return result
-        } catch {
-            print(error)
-        }
-        return "Lỗi RSA"
-        
-    }
 }
 
 extension Realm {

@@ -21,9 +21,6 @@ class HomeViewController: UIViewController {
         configuration()
         VM.getListEventForHome()
 
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        // Do any additional setup after loading the view.
-
     }
     
     

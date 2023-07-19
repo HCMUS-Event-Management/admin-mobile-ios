@@ -32,14 +32,7 @@ class TokenService {
     
     func checkForLogin(completionHandler: @escaping CompletionHandler) {
         let now = NSDate.now.timeIntervalSince1970
-//        if #available(iOS 15, *) {
-//            let now = Date.now.timeIntervalSince1970
-//        } else {
-//            let now = NSDate.now.timeIntervalSince1970
-//            // Fallback on earlier versions
-//        }
-        
-    
+
         if (getToken(key: "userToken") != "" && getToken(key: "refreshToken") != "") {
             if let infoToken = try? decode(jwtToken: getToken(key: "userToken")) {
                 if now.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
@@ -70,32 +63,9 @@ class TokenService {
         
         
         
-//        guard let infoToken = try? decode(jwtToken: getToken(key: "userToken")) else {
-//            return false
-//        }
-//        if now.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
-//            return true
-//        }
-    
-        
-        
-//        if let
-//        if getToken(key: "userToken") != "" {
-//
-//            print(infoToken["exp"]!)
-//            print(Date.now.timeIntervalSince1970)
-//            if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
-//                return false
-//            }
-//            return loginByRefreshToken()
-//
-//        } else {
-//            return false
-//        }
+
     }
-//completion: @escaping Handler<ReponseLogin>
     func loginByRefreshToken(completion: @escaping Handler<ReponseLogin>) {
-//        var check = false
         APIManager.shared.loginByRefresh(completion: {
             result in
             switch result {
@@ -105,7 +75,6 @@ class TokenService {
                 completion(.failure(err))
             }
         })
-//        return check
     }
     
     func removeTokenAndInfo() {
@@ -115,13 +84,6 @@ class TokenService {
         Contanst.userdefault.removeObject(forKey: "refreshToken")
         
 
-//
-        // test
-//        try! container.write{
-//            transaction in
-//            let data = transaction.get(DataMyTicketObject.self)
-//            print(data)
-//        }
     }
 }
 

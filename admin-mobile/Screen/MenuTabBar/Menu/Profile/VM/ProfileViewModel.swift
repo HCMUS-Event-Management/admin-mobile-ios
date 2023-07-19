@@ -38,9 +38,6 @@ final class ProfileViewModel {
                             }
                         }
                     })
-//                } else {
-//                    print("Failed to cast to Int")
-//                }
             }
         }
         
@@ -171,16 +168,12 @@ extension ProfileViewModel {
         let reachability = try! Reachability()
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getUserDetailFromSever()
           case .cellular:
-              print("Reachable via Cellular")
             getUserDetailFromSever()
           case .none:
-              print("Network not reachable")
               getUserDetailFromLocalDB()
           case .unavailable:
-              print("Network not reachable")
               getUserDetailFromLocalDB()
         }
     }

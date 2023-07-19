@@ -17,6 +17,7 @@ class ForgetPassword2ViewController: UIViewController {
         super.viewDidLoad()
         btnConfirm.addTarget(self, action: #selector(postAPI), for: .touchUpInside)
         btnBack.addTarget(self, action: #selector(back), for: .touchUpInside)
+        showToast(message: "OTP đã gửi về Gmail của bạn", font: .systemFont(ofSize: 12))
 
         // Do any additional setup after loading the view.
     }
@@ -24,7 +25,6 @@ class ForgetPassword2ViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        showToast(message: "OTP đã gửi về Gmail của bạn", font: .systemFont(ofSize: 12))
         btnConfirm.layer.cornerRadius = 20
         btnConfirm.layer.masksToBounds = true
         btnBack.layer.cornerRadius = 20

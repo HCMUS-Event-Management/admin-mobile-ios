@@ -14,8 +14,9 @@ class EventTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     func configure(app: DataReponseSearch) {
         imgView.layer.cornerRadius = 20
-        imgView.layer.borderColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
-        imgView.layer.borderWidth = 0.5
+        img.layer.borderColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
+        img.layer.borderWidth = 0.5
+        img.layer.cornerRadius = 20
 
         mainView.layer.cornerRadius = 20
         mainView.layer.masksToBounds = true

@@ -88,8 +88,7 @@ extension ScanQRViewController {
     func configuration() {
         // lay camera sau
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
-            print("Failed to get the camera device")
-            
+            showToast(message: "Lỗi trong lấy camera của thiết bị", font: .systemFont(ofSize: 12))
             return
         }
         
@@ -135,7 +134,6 @@ extension ScanQRViewController {
                 
             }
         } catch {
-            print(error)
             return
         }
         
@@ -161,29 +159,11 @@ extension ScanQRViewController {
                 self?.stoppedLoader(loader: loader ?? UIAlertController())
             case .dataLoaded: break
             case .error(let error):
-                print(error)
-//                let err = error as! DataError
                 DispatchQueue.main.async {
                     self?.qrCodeFrameView?.frame = CGRect.zero
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                     self?.alert.showAlert(title: "Failure", message: error ?? "You are not loged into the system.", alertType: .failure)
                 }
-                
-                
-                
-//                if (err == DataError.invalidResponse400) {
-//                    DispatchQueue.main.async {
-//                        self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
-//                        self?.stoppedLoader(loader: loader ?? UIAlertController())
-//                    }
-//                }
-                
-                
-//                if let err = error as? DataError.invalidResponse400 ,  let msg = err.localizedDescription {
-//                    print(msg)
-//
-//                }
-                
             case .vadilateTicket:
                 DispatchQueue.main.async {
                     self?.qrCodeFrameView?.frame = CGRect.zero

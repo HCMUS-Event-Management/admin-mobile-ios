@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  admin-mobile
 //
-//  Created by NguyenSon_MP on 29/03/2023.
+//  Created by NguyenSon_MP on 17/07/2023.
 //
 
 import UIKit
@@ -16,4 +16,3 @@ class ViewController: UIViewController {
 
 
 }
-
