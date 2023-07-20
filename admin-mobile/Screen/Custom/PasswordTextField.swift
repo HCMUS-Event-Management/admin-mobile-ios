@@ -16,10 +16,14 @@ class PasswordTextField: UITextField {
     
     private func commonInit() {
         // Set the image for the show password button
-        let showImage = UIImage(systemName: "eye.fill")?.resize(toWidth: 15, toHeight: 10)
+        let showImage = UIImage(systemName: "eye.fill")?.resize(toWidth: 25, toHeight: 10)
         showPasswordButton.setImage(showImage, for: .normal)
         showPasswordButton.tintColor = .lightGray
-        showPasswordButton.frame = CGRect(x: 0, y: 0, width: 15, height: 10)
+        
+        
+        showPasswordButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+
+        showPasswordButton.frame = CGRect(x: 0, y: 0, width: 25, height: 10)
         showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         
         // Set the display style for the password text field
@@ -30,7 +34,7 @@ class PasswordTextField: UITextField {
     
     @objc private func togglePasswordVisibility() {
         isSecureTextEntry = !isSecureTextEntry
-        let showImage = UIImage(systemName: isSecureTextEntry ? "eye.fill" : "eye.slash.fill")?.resize(toWidth: 15, toHeight: 10)
+        let showImage = UIImage(systemName: isSecureTextEntry ? "eye.fill" : "eye.slash.fill")?.resize(toWidth: 25, toHeight: 10)
         showPasswordButton.setImage(showImage, for: .normal)
     }
 }
