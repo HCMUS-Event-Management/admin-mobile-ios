@@ -31,10 +31,41 @@ class DetailEventViewController: UIViewController {
         title.textAlignment = .center
             
         navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .done, target: self, action: #selector(backScreen)),UIBarButtonItem(customView: title)]
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(goToWebsite))]
     }
     
     @objc func backScreen() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func goToWebsite() {
+        let alertController = UIAlertController(title: "Cài đăt", message: "Cài đặt tại trang web.",  preferredStyle: .alert)
+                                    
+        // Tạo hành động cho nút "OK"
+        let okAction = UIAlertAction(title: "Website", style: .default) { _ in
+            let urlString = "https://admin.hcmus.online/signin" // Replace with the URL of the website you want to open
+                    
+            if let url = URL(string: urlString) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    self.showToast(message: "Không thể mở Website", font: .systemFont(ofSize: 12))
+                }
+            } else {
+                self.showToast(message: "Đường dẫn tới Website có vấn đề", font: .systemFont(ofSize: 12))
+            }
+        }
+        
+        // Tạo hành động cho nút "Cancel"
+        let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel) { _ in
+        }
+        
+        // Thêm các hành động vào cửa sổ thông báo
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Hiển thị cửa sổ thông báo lên màn hình
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
