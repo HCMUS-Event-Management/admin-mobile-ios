@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Reachability
 
 class SearchViewController: UITableViewController {
+
+    var VM = SearchViewModel()
 
     private let trendingDataSourceDelegate = TrendingDataSourceDelegate()
     private var searchController: UISearchController!
@@ -46,10 +49,6 @@ class SearchViewController: UITableViewController {
     }
     
 
-    /// A final search has been triggered either by tapping search, tapping
-    /// a trending term or tapping a suggestion.
-    ///
-    /// - Parameter term: Term to search on the App Store.
     private func search(term: String) {
         searchController.searchBar.text = term
         searchType = .final
