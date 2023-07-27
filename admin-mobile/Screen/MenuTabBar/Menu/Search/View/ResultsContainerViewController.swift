@@ -13,9 +13,12 @@ class ResultsContainerViewController: ContentStateViewController {
     private var suggestionsViewController: SuggestedTermsTableViewController!
     var didSelect: (String) -> Void = { _ in }
     var callback : (() -> Void)?
+    var VM = SearchViewModel()
+    let appsListViewController = EventsTableViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuration()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         suggestionsViewController = storyboard.instantiateViewController(withIdentifier: "SuggestedTermsTableViewController") as? SuggestedTermsTableViewController
         suggestionsViewController.didSelect = didSelect
@@ -39,12 +42,66 @@ class ResultsContainerViewController: ContentStateViewController {
             /// We create a new view controller because the
             /// final search is a lot less frequent than the
             /// active suggestions.
-            let appsListViewController = EventsTableViewController()
-            appsListViewController.search(term: term)
+            VM.search(term: term)
+
             appsListViewController.callback = {
                 self.callback?()
             }
             transition(to: .render(appsListViewController))
         }
+    }
+}
+
+
+extension ResultsContainerViewController {
+
+    func configuration() {
+        initViewModel()
+        observeEvent()
+    }
+
+    func initViewModel() {
+        
+    }
+
+    // Data binding event observe - communication
+    func observeEvent() {
+        var loader:UIAlertController?
+
+        VM.eventHandler = { [weak self] event in
+            switch event {
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
+            case .dataLoaded:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.appsListViewController.search(apps: self?.VM.apps ?? [DataReponseSearch]())
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
+            case .error(let error):
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                } else if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -68,17 +68,20 @@ class EventsTableViewController: UITableViewController {
     }
     
 
-    func search(term: String) {
-        switch try! Reachability().connection {
-          case .wifi:
-            VM.search(term: term)
-          case .cellular:
-            VM.search(term: term)
-          case .none:
-            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
-          case .unavailable:
-            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
-        }
+    func search(apps: [DataReponseSearch]) {
+        
+        self.VM.apps = apps
+        self.tableView.reloadData()
+//        switch try! Reachability().connection {
+//          case .wifi:
+//            VM.search(term: term)
+//          case .cellular:
+//            VM.search(term: term)
+//          case .none:
+//            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+//          case .unavailable:
+//            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+//        }
     }
 }
 
