@@ -162,7 +162,7 @@ extension ScanQRViewController {
                 DispatchQueue.main.async {
                     self?.qrCodeFrameView?.frame = CGRect.zero
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
-                    self?.alert.showAlert(title: "Failure", message: error ?? "You are not loged into the system.", alertType: .failure)
+                    self?.alert.showAlert(title: "Failure", message: error ?? "Lỗi trong quá trình xác thực vé", alertType: .failure)
                 }
             case .vadilateTicket:
                 DispatchQueue.main.async {

@@ -21,8 +21,8 @@
                     <view userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="toc-SC-T92">
                         <rect key="frame" x="20" y="11" width="458" height="209"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar test" translatesAutoresizingMaskIntoConstraints="NO" id="kEl-Gk-acB">
-                                <rect key="frame" x="160.5" y="4" width="137" height="137.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kEl-Gk-acB">
+                                <rect key="frame" x="160.5" y="5.5" width="137" height="134.5"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kEl-Gk-acB" secondAttribute="height" multiplier="1:1" id="MHe-hd-2I1"/>
@@ -61,7 +61,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="avatar test" width="120" height="120"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ResultsContainerViewController: ContentStateViewController {
     
     private var suggestionsViewController: SuggestedTermsTableViewController!
@@ -42,8 +42,16 @@ class ResultsContainerViewController: ContentStateViewController {
             /// We create a new view controller because the
             /// final search is a lot less frequent than the
             /// active suggestions.
-            VM.search(term: term)
-
+            switch try! Reachability().connection {
+              case .wifi:
+                VM.search(term: term)
+              case .cellular:
+                VM.search(term: term)
+              case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
             appsListViewController.callback = {
                 self.callback?()
             }
