@@ -83,7 +83,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 let eventGoingOnEvent = self.VM.goingOnEvent[indexPath.row]
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     cell.eventName.text = eventGoingOnEvent.title
-                    cell.owner.text = "Tạo bởi \(eventGoingOnEvent.user!.fullName)"
+                    cell.owner.text = "Bởi \(eventGoingOnEvent.organizationName)"
                     if eventGoingOnEvent.type == "PAID" {
                         cell.paidName.text = "Có Phí"
                         cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.75)
@@ -137,7 +137,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     
                     cell.eventName.text = eventIsCommingEvent.title
-                    cell.owner.text = "Tạo bởi \(eventIsCommingEvent.user!.fullName)"
+                    cell.owner.text = "Bởi \(eventIsCommingEvent.organizationName)"
                     if eventIsCommingEvent.type == "PAID" {
                         cell.paidName.text = "Có Phí"
                         cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.75)

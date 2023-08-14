@@ -105,7 +105,7 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     
                     cell.eventName.text = event.title
-                    cell.owner.text = "Tạo bởi \(event.user!.fullName)"
+                    cell.owner.text = "Bởi \(event.organizationName)"
                     if event.type == "PAID" {
                         cell.paidName.text = "Có Phí"
                         cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.75)
